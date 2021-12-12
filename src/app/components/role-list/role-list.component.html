@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <a class="btn btn-info" routerLink="/role/create">Create Role</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="list-group">
+        <div class="list-group-item" *ngFor="let role of Roles">
+          <span>Role: {{role.name}} </span>
+          <a class="btn btn-info" routerLink="/role/edit/{{role._id}}" routerLinkActive>Edit</a>
+          <span *ngIf="role.name === 'user' || role.name === 'admin'"> *default role cannot be deleted</span>
+          <a *ngIf="role.name !== 'user' && role.name !== 'admin'" class="btn btn-info"
+            (click)="deleteRole(role)">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

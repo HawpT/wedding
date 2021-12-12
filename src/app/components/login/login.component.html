@@ -1,0 +1,55 @@
+<form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+  <div class="container">
+    <div class="row">
+      <div class="spacing"></div>
+      <div class="font-cabin col-md-12 text-center">
+        <span class="text-28"><strong>Please Sign In</strong></span>
+      </div>
+
+      <div class="spacing"></div>
+        <hr class="hr-style">
+      <div class="spacing"></div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" class="form-control" formControlName="email" placeholder="Enter email" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" class="form-control" formControlName="password" placeholder="Password">
+        </div>
+      </div>
+    </div>
+
+    <div class="spacing s20"></div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-3 col-sm-6">
+        <button type="submit" class="btn btn-block btn-primary">Sign in</button>
+      </div>
+    </div>
+
+    <div class="spacing s25"></div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-sm-12">
+        <p class="text-16 text-center"><a routerLinkActive="active" routerLink="/password-reset-create"><B>Having trouble logging in? Reset your password.</B></a></p>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-3 col-sm-6">
+        <p class="text-16 text-center">Or if you don't have an account...</p>
+        <button class="btn btn-block btn-primary" routerLinkActive="active" routerLink="/register">Sign up</button>
+      </div>
+    </div>
+
+    <div class="spacing s20"></div>
+    <hr class="hr-style">
+    <div class="spacing"></div>
+
+  </div>
+</form>

@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="list-group">
+    <div class="list-group-item" *ngFor="let user of users">
+      <div class="row">
+        <div class="col-md-12 flex align-center">
+          <span>User: {{user.nameFirst}} {{user.nameLast}}</span>
+          <div class="flex-spacer"></div>
+          <a class="btn btn-info" routerLink="/user/edit/{{user._id}}" routerLinkActive>Edit</a>
+          <span class="dropdown">
+            <a class="btn btn-info dropdown-toggle" href="#" id="navbarCampers" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">Roles</a>
+            <div class="dropdown-menu">
+              <div class="multi-select" multiple>
+                <div class="multi-select-option" *ngFor="let role of roles"
+                  [ngClass]="{'selected': user.roles.includes(role.name)}"
+                  (click)="toggleUserRole($event, role.name, user)">
+                  <i class="fa fa-check"></i><i class="fa fa-times"></i> {{role.name}}
+                </div>
+              </div>
+            </div>
+          </span>
+          <a class="btn btn-warn" (click)="deleteUser(user)">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

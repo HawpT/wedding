@@ -1,0 +1,56 @@
+<form [formGroup]="roleForm" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="role-information row">
+      <div class="col-md-12">
+        <p size="8" color="#000000">Create Role</p>
+      </div>
+      <div class="col-md-4 form-group">
+        <!--First Name-->
+        <label for="inputName">Name<i class="fas fa-asterisk"></i></label>
+        <input class="form-control" type="text" formControlName="name">
+        <!-- error -->
+        <div class="error" *ngIf="submitted && myForm.name.errors?.required">
+          First name is required.
+        </div>
+        <div class="error" *ngIf="submitted && myForm.name.errors?.pattern">
+          Enter a first name (between 1 and 50 characters).
+        </div>
+      </div>
+
+      <div class="col-md-12"></div>
+
+      <div class="col-md-6 form-group">
+        <!--Subjects-->
+        <label for="inputSubjects">Subjects<i class="fas fa-asterisk"></i></label>
+        <select class="custom-select form-control" formControlName="subjects" (change)="subjectChanged($event)">
+          <option *ngFor="let subject of subjects" value="{{subject}}">
+            {{subject}}
+          </option>
+        </select>
+        <!-- error -->
+        <div class="error" *ngIf="submitted && myForm.subjects.errors?.required">
+          Role position you are applying for is required.
+        </div>
+      </div>
+
+      <div class="col-md-12 form-group" *ngIf="myForm.subjects.value">
+        <!--Actions-->
+        <label>Actions</label><span>&nbsp;</span><a class="btn btn-info" (click)="toggleAll($event)">Toggle All</a>
+        <div class="flex flex-start">
+          <div formArrayName="actionsControls" *ngFor="let position of actionsAsFormArray().controls; let i = index">
+            <span *ngIf="myForm.actions.value !== actions[i]">
+              <input type="checkbox" [formControlName]="i" name="{{actions[i]}}" (change)="actionChecked($event)" />
+              <label for="actions-{{i}}">{{actions[i]}}</label>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12"></div>
+      <div class="col-md-3 form-group">
+        <button class="btn btn-success btn-lg btn-block" style="float:center" type="submit">Submit
+          Application</button>
+      </div>
+    </div>
+  </div>
+</form>

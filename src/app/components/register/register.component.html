@@ -1,0 +1,106 @@
+<form focusInvalidInput [formGroup]="registerForm" (ngSubmit)="registerUser()">
+  <div class="container">
+    <div class="row">
+
+      <div class="spacing"></div>
+
+      <div class="font-cabin col-md-12 text-center" >
+        <span class="text-28"><strong>Please Sign Up</strong></span>
+      </div>
+
+      <div class="spacing"></div>
+      <hr class="hr-style">
+      <div class="spacing"></div>
+
+
+      <div class="col-md-12"></div>
+      <div class="col-md-4 form-group">
+        <!--First Name-->
+        <label for="inputNameFirst">First name<i class="fas fa-asterisk"></i></label>
+        <input class="form-control" type="text" formControlName="nameFirst" placeholder="Enter first name">
+        <!-- error -->
+        <div class="error" *ngIf="submitted && myForm.nameFirst.errors?.required">
+          First Name is required.
+        </div>
+        <div class="error" *ngIf="submitted && myForm.nameFirst.errors?.pattern">
+          Enter a first name (between 1 and 50 characters).
+        </div>
+      </div>
+
+      <div class="col-md-4 form-group">
+        <!--Last Name-->
+        <label for="inputNameLast">Last name<i class="fas fa-asterisk"></i></label>
+        <input class="form-control" type="text" formControlName="nameLast" placeholder="Enter last name">
+        <!-- error -->
+        <div class="error" *ngIf="submitted && myForm.nameLast.errors?.required">
+          Last Name is required.
+        </div>
+        <div class="error" *ngIf="submitted && myForm.nameLast.errors?.pattern">
+          Enter a last name (between 1 and 50 characters).
+        </div>
+      </div>
+
+      <div class="col-md-3 form-group">
+        <!--Email Address-->
+        <label for="inputEmail">Email<i class="fas fa-asterisk"></i></label>
+        <input class="form-control" type="text" formControlName="email" placeholder="Enter email">
+        <!-- error -->
+        <div class="error" *ngIf="submitted && myForm.email.errors?.required">
+          Email Address is required.
+        </div>
+        <div class="error" *ngIf="submitted && myForm.email.errors?.pattern">
+          Enter a valid email address.
+        </div>
+      </div>
+
+      <div class="col-md-6 form-group">
+        <!--Password-->
+        <label for="password">Password<i class="fas fa-asterisk"></i></label>
+        <input type="password" class="form-control" formControlName="password" placeholder="Password"
+          data-lpignore="true" (change)="passwordCheck()">
+        <div class="error" *ngIf="submitted && myForm.password.errors?.required">
+          Password is required.
+        </div>
+        <div class="error" *ngIf="submitted && myForm.password.errors?.pattern">
+          Enter a password (8 to 32 characters, at least one upper case letter and number).
+        </div>
+      </div>
+
+      <div class="col-md-6 form-group">
+        <!--Password Confirm-->
+        <label for="passwordConf">Confirm Password<i class="fas fa-asterisk"></i></label>
+        <input type="password" class="form-control" formControlName="passwordConf" placeholder="Confirm Password"
+          data-lpignore="true" (change)="passwordCheck()">
+        <div class="error" *ngIf="submitted && myForm.passwordConf.errors?.required">
+          Password is required.
+        </div>
+        <div class="error" *ngIf="submitted && myForm.passwordConf.errors?.pattern">
+          Enter a password (8 to 32 characters, at least one upper case letter and number).
+        </div>
+        <div class="error" *ngIf="myForm.passwordConf.errors?.match">
+          Passwords do not match!
+        </div>
+      </div>
+
+      <div class="spacing"></div>
+
+      <div class="col-md-12 row justify-content-center">
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-block btn-primary">Sign up</button>
+        </div>
+      </div>
+
+      <div class="spacing s20"></div>
+
+      <div class="col-md-12 row justify-content-center">
+          <p class="text-16 text-center"><strong>After clicking 'Sign Up' you will receive an email from '<strong>noreply@kevinandmckenna.com</strong>' to verify your email address before you can login.<br>
+            Please check your email for the verification link. Don't forget to check your spam/junk folder if you don't see the email in your inbox.</strong></p>
+      </div>
+  
+
+      <hr class="hr-style">
+      <div class="spacing"></div>
+
+    </div>
+  </div>
+</form>

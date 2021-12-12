@@ -1,0 +1,18 @@
+<div id="dataViewer" class="accordion">
+  <div class="card" *ngFor="let node of data; let i = index">
+    <div class="card-header" id="heading{{i}}">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" [attr.data-target]="'#collapse' + i" aria-expanded="true"
+          [attr.aria-controls]="'collapse' + i">
+          {{title}} {{i}}
+        </button>
+      </h5>
+    </div>
+    <div id="collapse{{i}}" class="collapse" [class.show]="i === 0" [attr.aria-labelledby]="'heading' + i"
+      data-parent="#dataViewer">
+      <div class="card-body">
+        <pre [innerHTML]="json(node)"></pre>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<form focusInvalidInput [formGroup]="editUserForm" (ngSubmit)="editUser()">
+  <div class="container">
+    <div class="row">
+
+      <div class="spacing"></div>
+      <hr class="hr-style">
+      <div class="spacing"></div>
+
+      <div class="font-cabin" >
+        <span class="text-28">Edit User Info</span>
+      </div>
+
+      <div class="spacing"></div>
+
+      <div class="col-md-12"></div>
+      <div class="col-md-4 form-group">
+        <!--First Name-->
+        <label for="inputNameFirst">First name<i class="fas fa-asterisk"></i></label>
+        <input class="form-control" type="text" formControlName="nameFirst" placeholder="Enter first name">
+        <!-- error -->
+        <div class="error" *ngIf="submitted && myForm.nameFirst.errors?.required">
+          First Name is required.
+        </div>
+        <div class="error" *ngIf="submitted && myForm.nameFirst.errors?.pattern">
+          Enter a first name (between 1 and 50 characters).
+        </div>
+      </div>
+
+      <div class="col-md-4 form-group">
+        <!--Last Name-->
+        <label for="inputNameLast">Last name<i class="fas fa-asterisk"></i></label>
+        <input class="form-control" type="text" formControlName="nameLast" placeholder="Enter last name">
+        <!-- error -->
+        <div class="error" *ngIf="submitted && myForm.nameLast.errors?.required">
+          Last Name is required.
+        </div>
+        <div class="error" *ngIf="submitted && myForm.nameLast.errors?.pattern">
+          Enter a last name (between 1 and 50 characters).
+        </div>
+      </div>
+
+      <div class="col-md-3 form-group">
+        <!--Email Address-->
+        <label for="inputEmail">Email<i class="fas fa-asterisk"></i></label>
+        <input class="form-control" type="text" formControlName="email" placeholder="Enter email">
+        <!-- error -->
+        <div class="error" *ngIf="submitted && myForm.email.errors?.required">
+          Email Address is required.
+        </div>
+        <div class="error" *ngIf="submitted && myForm.email.errors?.pattern">
+          Enter a valid email address.
+        </div>
+      </div>
+
+      <div class="spacing"></div>
+
+      <div class="col-md-6 form-group">
+        <button type="submit" class="btn btn-block btn-primary">Save</button>
+      </div>
+
+      <hr class="hr-style">
+      <div class="spacing"></div>
+
+    </div>
+  </div>
+</form>

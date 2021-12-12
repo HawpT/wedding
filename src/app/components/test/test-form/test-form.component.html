@@ -1,0 +1,58 @@
+<form focusInvalidInput [formGroup]="testForm" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="row">
+      <button type="submit" class="btn btn-block btn-primary">Save</button>
+    </div>
+    <div class="row">
+      <div id="camp-email">
+        <div class="email-wrapper">
+          <div class="email-content content-header">
+            <h1>CAMP FELLOWSHIP</h1>
+          </div>
+          <div class="email-content content-body">
+            <div>
+              <h4>Hey, {{nameFirst}} {{nameLast}}</h4>
+              <p *ngIf="body">{{body}}</p>
+              <p *ngIf="link"><a href="{{link}}" target="_blank">{{link}}</a></p>
+            </div>
+          </div>
+          <div class="email-content content-footer">
+            <div class="content-left">
+              <a href="https://www.facebook.com/groups/wedding/" class="icon" data-placement="bottom" title=""
+                target="_blank" data-original-title="Facebook">
+                <img src="https://kevinandmckenna.com/assets/img/facebook.png" alt="Facebook"/>
+              </a>
+              <a href="https://www.instagram.com/weddingutah/" class="icon" data-placement="bottom" title=""
+                target="_blank" data-original-title="Instagram">
+                <img src="https://kevinandmckenna.com/assets/img/instagram.png" alt="Instagram"/>
+              </a>
+            </div>
+            <div class="content-right">
+              <h2>FIND US ON SOCIAL MEDIA</h2>
+            </div>
+            <div class="content-row">
+              <div>
+                <span>Camp Directors:</span>
+                <div class="flex align-center">
+                  <div>Shaun McIntire<br>(801) 243-7071</div>
+                  <div>&amp;</div>
+                  <div>Christine Madsen<br>(801) 363-8877</div>
+                </div>
+                <a href="mailto:wedding@mail.com">wedding@mail.com</a>
+              </div>
+              <div>
+                <span>rsvp Directors:</span>
+                <div class="flex align-center">
+                  <div>Molly Rogushka<br>(435) 640-3070</div>
+                  <div>&amp;</div>
+                  <div>Molly Connor<br>(801) 712-0446</div>
+                </div>
+                <a href="mailto:camprsvps@mail.com">camprsvps@mail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

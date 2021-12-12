@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <app-user-view [user]="currentUser"></app-user-view>
+  </div>
+  <div class="row">
+    <div class="spacing"></div>
+    <hr class="hr-style">
+    <div class="spacing"></div>
+    <div class="flex-no-grow" *ngIf="rsvps">
+      <h2>Your RSVP</h2>
+      <span *ngIf="rsvps.length === 0">You haven't RSVPed yet!</span>
+      <button class="btn btn-success" routerLinkActive="active" routerLink="/rsvp/create" *ngIf="rsvps.length === 0">RSVP now</button>
+    </div>
+    <div *ngFor="let rsvp of rsvps">
+      <app-data-viewer [data]="rsvp"></app-data-viewer>
+    </div>
+
+    <div class="spacing"></div>
+    <hr class="hr-style">
+    <div class="spacing"></div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+*/node_modules/*
+node_modules/
+node_modules/*
+.vscode/
+.vscode/*
+.vs/*
+
+*/dist/*
+
+*/uploads/*
+
+*.env
+
+*/assets/*

@@ -6,8 +6,8 @@
       <hr class="hr-style">
       <div class="spacing"></div>
 
-      <div class="font-cabin" >
-        <span class="text-28">Edit User Info</span>
+      <div>
+        <span class="text-larger">Edit User Info</span>
       </div>
 
       <div class="spacing"></div>
@@ -16,7 +16,7 @@
       <div class="col-md-4 form-group">
         <!--First Name-->
         <label for="inputNameFirst">First name<i class="fas fa-asterisk"></i></label>
-        <input class="form-control" type="text" formControlName="nameFirst" placeholder="Enter first name">
+        <input type="text" formControlName="nameFirst" placeholder="Enter first name">
         <!-- error -->
         <div class="error" *ngIf="submitted && myForm.nameFirst.errors?.required">
           First Name is required.
@@ -29,7 +29,7 @@
       <div class="col-md-4 form-group">
         <!--Last Name-->
         <label for="inputNameLast">Last name<i class="fas fa-asterisk"></i></label>
-        <input class="form-control" type="text" formControlName="nameLast" placeholder="Enter last name">
+        <input type="text" formControlName="nameLast" placeholder="Enter last name">
         <!-- error -->
         <div class="error" *ngIf="submitted && myForm.nameLast.errors?.required">
           Last Name is required.
@@ -42,7 +42,7 @@
       <div class="col-md-3 form-group">
         <!--Email Address-->
         <label for="inputEmail">Email<i class="fas fa-asterisk"></i></label>
-        <input class="form-control" type="text" formControlName="email" placeholder="Enter email">
+        <input type="text" formControlName="email" placeholder="Enter email">
         <!-- error -->
         <div class="error" *ngIf="submitted && myForm.email.errors?.required">
           Email Address is required.
@@ -55,7 +55,7 @@
       <div class="spacing"></div>
 
       <div class="col-md-6 form-group">
-        <button type="submit" class="btn btn-block btn-primary">Save</button>
+        <button type="submit" class="btn btn-block">Save</button>
       </div>
 
       <hr class="hr-style">

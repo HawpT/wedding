@@ -5,8 +5,10 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import authorize from '../middleware/auth';
 import User, { IUser } from '../models/user';
+import RegistrationCode, { IRegistrationCode } from '../models/registration-code';
 import { createPasswordResetEmail, createVerificationEmail } from '../services/email.service';
 import { DateTime } from 'luxon';
+import { constants } from 'buffer';
 
 const auth = express.Router();
 export default auth;
@@ -71,7 +73,10 @@ auth.route('/register').post(
     check('passwordConf', 'Passwords should match.')
       .if((value, {
         req
-      }) => req.body.password !== req.body.passwordConf)
+      }) => req.body.password !== req.body.passwordConf),
+    check('registrationCode', 'Registration Code Required')
+      .not()
+      .isEmpty()
   ],
   async (req, res, next) => {
     try {
@@ -79,13 +84,27 @@ auth.route('/register').post(
       if (!errors.isEmpty()) {
         return res.status(422).jsonp(errors.array());
       } else {
+        const regCode = await RegistrationCode.findOne({ code: req.body.registrationCode}).exec();
+        if (!regCode) {
+          return res.status(500).json({
+            message: 'Could not find registration code.'
+          });
+        }
+        if (regCode.claimed) {
+          return res.status(500).json({
+            message: 'The registration code has already been claimed.'
+          });
+        }
         const hash = await bcrypt.hash(req.body.password, 10);
         req.body.password = hash;
         req.body.emailVerified = false;
         req.body.roles = ['user'];
+        req.body.registrationCodeId = regCode._id;
         let newUser = await User.create(req.body);
         newUser = await createEmailVerificationUUID(newUser);
         createVerificationEmail(newUser);
+        regCode.claimed = true;
+        regCode.save();
         return res.status(201).json({
           message: 'User successfully created!'
         });

@@ -4,46 +4,62 @@
 
       <div class="spacing"></div>
 
-      <div class="font-cabin col-md-12 text-center" >
-        <span class="text-28"><strong>Please Sign Up</strong></span>
+      <div class=" col-md-12 text-center" >
+        <span class="text-larger"><strong>Please Sign Up</strong></span>
       </div>
 
       <div class="spacing"></div>
       <hr class="hr-style">
       <div class="spacing"></div>
 
-
-      <div class="col-md-12"></div>
       <div class="col-md-4 form-group">
-        <!--First Name-->
-        <label for="inputNameFirst">First name<i class="fas fa-asterisk"></i></label>
-        <input class="form-control" type="text" formControlName="nameFirst" placeholder="Enter first name">
+        <span class="input input--madoka" [class]="{'input--filled': !!myForm.nameFirst.value, 'input--error': submitted && myForm.nameFirst.errors}">
+          <input class="input__field input__field--madoka"  type="text" formControlName="nameFirst" id="input-nameFirst">
+          <label class="input__label input__label--madoka" for="inputNameFirst">
+            <svg class="graphic graphic--madoka" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
+              <path d="m0,0l404,0l0,77l-404,0l0,-77z"></path>
+            </svg>
+            <span class="input__label-content input__label-content--madoka">First name<i class="fas fa-asterisk"></i></span>
+          </label>
+        </span>
         <!-- error -->
         <div class="error" *ngIf="submitted && myForm.nameFirst.errors?.required">
           First Name is required.
         </div>
-        <div class="error" *ngIf="submitted && myForm.nameFirst.errors?.pattern">
-          Enter a first name (between 1 and 50 characters).
+        <div class="error" *ngIf="submitted && (myForm.nameFirst.errors?.minLength || myForm.nameFirst.errors?.maxLength)">
+          Enter a first name (between 3 and 25 characters).
         </div>
       </div>
 
       <div class="col-md-4 form-group">
-        <!--Last Name-->
-        <label for="inputNameLast">Last name<i class="fas fa-asterisk"></i></label>
-        <input class="form-control" type="text" formControlName="nameLast" placeholder="Enter last name">
+        <span class="input input--madoka" [class]="{'input--filled': !!myForm.nameLast.value, 'input--error': submitted && myForm.nameLast.errors}">
+          <input class="input__field input__field--madoka" type="text" formControlName="nameLast" id="input-nameLast">
+          <label class="input__label input__label--madoka" for="nameLast">
+            <svg class="graphic graphic--madoka" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
+              <path d="m0,0l404,0l0,77l-404,0l0,-77z"></path>
+            </svg>
+            <span class="input__label-content input__label-content--madoka">Last name<i class="fas fa-asterisk"></i></span>
+          </label>
+        </span>
         <!-- error -->
         <div class="error" *ngIf="submitted && myForm.nameLast.errors?.required">
           Last Name is required.
         </div>
-        <div class="error" *ngIf="submitted && myForm.nameLast.errors?.pattern">
-          Enter a last name (between 1 and 50 characters).
+        <div class="error" *ngIf="submitted && (myForm.nameLast.errors?.minLength || myForm.nameLast.errors?.maxLength)">
+          Enter a last name (between 3 and 25 characters).
         </div>
       </div>
 
-      <div class="col-md-3 form-group">
-        <!--Email Address-->
-        <label for="inputEmail">Email<i class="fas fa-asterisk"></i></label>
-        <input class="form-control" type="text" formControlName="email" placeholder="Enter email">
+      <div class="col-md-4 form-group">
+        <span class="input input--madoka" [class]="{'input--filled': !!myForm.email.value, 'input--error': submitted && myForm.email.errors}">
+          <input class="input__field input__field--madoka" type="text" formControlName="email" id="input-email">
+          <label class="input__label input__label--madoka" for="email">
+            <svg class="graphic graphic--madoka" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
+              <path d="m0,0l404,0l0,77l-404,0l0,-77z"></path>
+            </svg>
+            <span class="input__label-content input__label-content--madoka">Email<i class="fas fa-asterisk"></i></span>
+          </label>
+        </span>
         <!-- error -->
         <div class="error" *ngIf="submitted && myForm.email.errors?.required">
           Email Address is required.
@@ -54,10 +70,16 @@
       </div>
 
       <div class="col-md-6 form-group">
-        <!--Password-->
-        <label for="password">Password<i class="fas fa-asterisk"></i></label>
-        <input type="password" class="form-control" formControlName="password" placeholder="Password"
-          data-lpignore="true" (change)="passwordCheck()">
+        <span class="input input--madoka" [class]="{'input--filled': !!myForm.password.value, 'input--error': submitted && myForm.password.errors}">
+          <input class="input__field input__field--madoka" type="password" formControlName="password" id="input-password" (change)="passwordCheck()">
+          <label class="input__label input__label--madoka" for="password">
+            <svg class="graphic graphic--madoka" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
+              <path d="m0,0l404,0l0,77l-404,0l0,-77z"></path>
+            </svg>
+            <span class="input__label-content input__label-content--madoka">Password<i class="fas fa-asterisk"></i></span>
+          </label>
+        </span>
+        <!-- error -->
         <div class="error" *ngIf="submitted && myForm.password.errors?.required">
           Password is required.
         </div>
@@ -67,10 +89,16 @@
       </div>
 
       <div class="col-md-6 form-group">
-        <!--Password Confirm-->
-        <label for="passwordConf">Confirm Password<i class="fas fa-asterisk"></i></label>
-        <input type="password" class="form-control" formControlName="passwordConf" placeholder="Confirm Password"
-          data-lpignore="true" (change)="passwordCheck()">
+        <span class="input input--madoka" [class]="{'input--filled': !!myForm.passwordConf.value, 'input--error': submitted && myForm.passwordConf.errors}">
+          <input class="input__field input__field--madoka" type="password" formControlName="passwordConf" id="input-passwordConf" (change)="passwordCheck()">
+          <label class="input__label input__label--madoka" for="passwordConf">
+            <svg class="graphic graphic--madoka" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
+              <path d="m0,0l404,0l0,77l-404,0l0,-77z"></path>
+            </svg>
+            <span class="input__label-content input__label-content--madoka">Confirm Password<i class="fas fa-asterisk"></i></span>
+          </label>
+        </span>
+        <!-- error -->
         <div class="error" *ngIf="submitted && myForm.passwordConf.errors?.required">
           Password is required.
         </div>
@@ -82,25 +110,39 @@
         </div>
       </div>
 
+      <div class="col-md-6 form-group">
+        <span class="input input--madoka" [class]="{'input--filled': !!myForm.registrationCode.value, 'input--error': submitted && myForm.registrationCode.errors}">
+          <input class="input__field input__field--madoka" type="registrationCode" formControlName="registrationCode" id="input-registrationCode">
+          <label class="input__label input__label--madoka" for="registrationCode">
+            <svg class="graphic graphic--madoka" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
+              <path d="m0,0l404,0l0,77l-404,0l0,-77z"></path>
+            </svg>
+            <span class="input__label-content input__label-content--madoka">Registration Code<i class="fas fa-asterisk"></i></span>
+          </label>
+        </span>
+        <!-- error -->
+        <div class="error" *ngIf="submitted && myForm.registrationCode.errors?.required">
+          Registration Code is required.
+        </div>
+      </div>
+
       <div class="spacing"></div>
 
       <div class="col-md-12 row justify-content-center">
-        <div class="col-md-6">
-          <button type="submit" class="btn btn-block btn-primary">Sign up</button>
+        <div class="col-md-6 text-center">
+          <button type="submit" class="btn gradient">Sign up</button>
         </div>
       </div>
 
       <div class="spacing s20"></div>
 
       <div class="col-md-12 row justify-content-center">
-          <p class="text-16 text-center"><strong>After clicking 'Sign Up' you will receive an email from '<strong>noreply@kevinandmckenna.com</strong>' to verify your email address before you can login.<br>
+          <p class="text-small"><strong>After clicking 'Sign Up' you will receive an email from '<strong>noreply@kevinandmckenna.com</strong>' to verify your email address before you can login.<br>
             Please check your email for the verification link. Don't forget to check your spam/junk folder if you don't see the email in your inbox.</strong></p>
       </div>
   
-
       <hr class="hr-style">
       <div class="spacing"></div>
-
     </div>
   </div>
 </form>

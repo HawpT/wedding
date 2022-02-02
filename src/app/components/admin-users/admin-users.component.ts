@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-admin-users',
   templateUrl: './admin-users.component.html',
-  styleUrls: ['./admin-users.component.less']
+  styleUrls: ['./admin-users.component.scss']
 })
 export class AdminUsersComponent extends RoleAuth {
   roles: Role[];

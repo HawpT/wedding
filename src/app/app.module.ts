@@ -5,6 +5,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
+import { MatSelectModule } from '@angular/material/select';
+
 import { environment } from '@environments/environment';
 import { ApiService } from '@service/api.service';
 import { AuthInterceptor } from '@service/authconfig.interceptor';
@@ -35,9 +37,11 @@ import { UserViewComponent } from '@components/user-view/user-view.component';
 import { PasswordResetComponent } from '@components/password-reset/password-reset.component';
 import { UserVerifyComponent } from '@components/user-verify/user-verify.component';
 import { PasswordResetCreateComponent } from '@components/password-reset-create/password-reset-create.component';
-import { RsvpListComponent } from './components/rsvp/rsvp-list/rsvp-list.component';
-import { RsvpEditComponent } from './components/rsvp/rsvp-edit/rsvp-edit.component';
-import { RsvpCreateComponent } from './components/rsvp/rsvp-create/rsvp-create.component';
+import { RsvpListComponent } from '@components/rsvp/rsvp-list/rsvp-list.component';
+import { RsvpEditComponent } from '@components/rsvp/rsvp-edit/rsvp-edit.component';
+import { RsvpCreateComponent } from '@components/rsvp/rsvp-create/rsvp-create.component';
+import { RegistrationCodeListComponent } from '@components/registration-code/registration-code-list/registration-code-list.component';
+import { RegistrationCodeCreateComponent } from '@components/registration-code/registration-code-create/registration-code-create.component';
 
 
 @NgModule({
@@ -68,7 +72,9 @@ import { RsvpCreateComponent } from './components/rsvp/rsvp-create/rsvp-create.c
     PasswordResetCreateComponent,
     RsvpListComponent,
     RsvpEditComponent,
-    RsvpCreateComponent
+    RsvpCreateComponent,
+    RegistrationCodeListComponent,
+    RegistrationCodeCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +83,7 @@ import { RsvpCreateComponent } from './components/rsvp/rsvp-create/rsvp-create.c
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    MatSelectModule,
     ToastrModule.forRoot({
       timeOut: 10000,
       preventDuplicates: true,

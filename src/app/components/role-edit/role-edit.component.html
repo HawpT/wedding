@@ -2,18 +2,18 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <a class="btn btn-info" routerLink="/role/list" routerLinkActive>Back</a>
+        <a class="btn gradient" routerLink="/role/list" routerLinkActive>Back</a>
       </div>
     </div>
     <div class="role-information row">
       <div class="col-md-12">
-        <p size="8" color="#000000">Edit Role</p>
+        <h3>Edit Role</h3>
       </div>
 
       <div class="col-md-4 form-group">
         <!--First Name-->
         <label for="inputName">Name<i class="fas fa-asterisk"></i></label>
-        <input class="form-control" type="text" formControlName="name">
+        <input type="text" formControlName="name">
         <!-- error -->
         <div class="error" *ngIf="submitted && myForm.name.errors?.required">
           Role name is required.
@@ -41,7 +41,7 @@
 
       <div class="col-md-12 form-group" *ngIf="myForm.subjects.value">
         <!--Actions-->
-        <label>Actions</label><span>&nbsp;</span><a class="btn btn-info" (click)="toggleAll($event)">Toggle All</a>
+        <label>Actions</label><span>&nbsp;</span><a class="btn gradient" (click)="toggleAll($event)">Toggle All</a>
         <div class="flex flex-start">
           <div formArrayName="actionsControls" *ngFor="let position of actionsAsFormArray().controls; let i = index">
             <span *ngIf="myForm.actions.value !== actions[i]">
@@ -54,7 +54,7 @@
 
       <div class="col-md-12"></div>
       <div class="col-md-3 form-group">
-        <button class="btn btn-info btn-lg btn-block" style="float:center" type="submit">Save</button>
+        <button class="btn gradient btn-lg btn-block" style="float:center" type="submit">Save</button>
       </div>
     </div>
   </div>

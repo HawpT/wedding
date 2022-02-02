@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import { Schema, Document } from 'mongoose';
+import { Schema, Model, Document, Types } from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
 
 export interface IUser extends Document {
@@ -19,6 +19,10 @@ export interface IUser extends Document {
 
 // Define collection and schema
 const schema = new Schema({
+  registrationCodeId: {
+    type: Types.ObjectId,
+    ref: 'RegistrationCode'
+  },
   nameFirst: {
     type: String
   },

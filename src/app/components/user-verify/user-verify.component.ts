@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-user-verify',
   templateUrl: './user-verify.component.html',
-  styleUrls: ['./user-verify.component.less']
+  styleUrls: ['./user-verify.component.scss']
 })
 export class UserVerifyComponent {
   email: string;

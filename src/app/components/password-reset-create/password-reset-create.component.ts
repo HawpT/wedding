@@ -8,7 +8,7 @@ import { LogInvalidComponents } from '@app/helper.methods';
 @Component({
   selector: 'app-password-reset-create',
   templateUrl: './password-reset-create.component.html',
-  styleUrls: ['./password-reset-create.component.less']
+  styleUrls: ['./password-reset-create.component.scss']
 })
 export class PasswordResetCreateComponent {
   submitted = false;

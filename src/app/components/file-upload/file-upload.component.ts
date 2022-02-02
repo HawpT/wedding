@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
       multi: true
     }
   ],
-  styleUrls: ['./file-upload.component.less']
+  styleUrls: ['./file-upload.component.scss']
 })
 export class FileUploadComponent implements ControlValueAccessor {
   @Input() progress;

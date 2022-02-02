@@ -10,7 +10,7 @@ import { LogInvalidComponents } from '@app/helper.methods';
 @Component({
   selector: 'app-password-reset',
   templateUrl: './password-reset.component.html',
-  styleUrls: ['./password-reset.component.less']
+  styleUrls: ['./password-reset.component.scss']
 })
 
 export class PasswordResetComponent {

@@ -13,13 +13,14 @@
           <a class="nav-link" href="/gallery">Gallery</a>
         </li>
         <li class="nav-item dropdown" *ngIf="this.user && this.user.roles.includes('admin')">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarAdmin" role="button" data-toggle="dropdown"
+          <a class="nav-link dropdown-toggle" href="#" id="navbarAdmin" role="btn" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">Admin</a>
           <div class="dropdown-menu" aria-labelledby="navbarAdmin">
             <a class="dropdown-item" routerLinkActive="active" routerLink="/admin/test">Test Form</a>
             <a class="dropdown-item" routerLinkActive="active" routerLink="/admin">Dashboard</a>
             <a class="dropdown-item" routerLinkActive="active" routerLink="/admin/reports">Reports</a>
             <a class="dropdown-item" routerLinkActive="active" routerLink="/role/list">Roles</a>
+            <a class="dropdown-item" routerLinkActive="active" routerLink="/registration-code/list">Registration Codes</a>
             <a class="dropdown-item" routerLinkActive="active" routerLink="/admin/users">Users</a>
             <a class="dropdown-item" routerLinkActive="active" routerLink="/password-reset">Password Reset</a>
           </div>
@@ -27,16 +28,14 @@
       </ul>
     </div>
     <div class="navbar-right">
-      <a class="nav-link" *ngIf="this.apiService.isLoggedIn" routerLinkActive="active" routerLink="/user/profile"><i
-          class="fa fa-user fa-2x"></i></a>
-      <a class="nav-link" *ngIf="!this.apiService.isLoggedIn" routerLinkActive="active" routerLink="/login">Login</a>
+      <a class="nav-link btn" *ngIf="this.apiService.isLoggedIn" routerLinkActive="active" routerLink="/user/profile"><i
+          class="fa fa-user"></i></a>
+      <a class="nav-link btn" *ngIf="!this.apiService.isLoggedIn" routerLinkActive="active" routerLink="/login">Login</a>
 
-      <a *ngIf="!this.apiService.isLoggedIn" class="btn btn-outline-primary" routerLinkActive="active"
-        routerLinkActive="active" routerLink="/register">Sign up</a>
-      <button (click)="logout()" *ngIf="this.apiService.isLoggedIn" type="button" class="btn btn-danger">Logout</button>
+      <button (click)="logout()" *ngIf="this.apiService.isLoggedIn" type="btn" class="btn">Logout</button>
     </div>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    <button class="navbar-toggler" type="btn" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

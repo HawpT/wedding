@@ -37,6 +37,7 @@ export class RoleAuthActions {
     'rsvp',
     'user',
     'role',
+    'registration-code',
     'test'
   ];
 }

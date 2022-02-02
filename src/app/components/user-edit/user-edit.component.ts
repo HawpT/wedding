@@ -11,7 +11,7 @@ import { LogInvalidComponents } from '@app/helper.methods';
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
-  styleUrls: ['./user-edit.component.less']
+  styleUrls: ['./user-edit.component.scss']
 })
 export class UserEditComponent extends RoleAuth implements OnInit {
   submitted = false;

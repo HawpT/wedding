@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '@service/api.service';
 import { Router } from '@angular/router';
@@ -9,9 +9,9 @@ import { LogInvalidComponents } from '@app/helper.methods';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.less']
+  styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   submitted = false;
   registerForm: FormGroup;
 
@@ -22,16 +22,13 @@ export class RegisterComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.registerForm = this.fb.group({
-      nameFirst: ['', [Validators.required, Validators.pattern(Constants.MAX_LEN_25)]],
-      nameLast: ['', [Validators.required, Validators.pattern(Constants.MAX_LEN_25)]],
+      nameFirst: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
+      nameLast: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
       email: ['', [Validators.required, Validators.pattern(Constants.EMAIL_VALIDATION)]],
-      // named weird to prevent extensions from interfering with submission
       password: ['', [Validators.required, Validators.pattern(Constants.PASSWORD_VALIDATION)]],
       passwordConf: ['', [Validators.required, Validators.pattern(Constants.PASSWORD_VALIDATION)]],
+      registrationCode: ['', [Validators.required]]
     });
-  }
-
-  ngOnInit() {
   }
 
   get myForm() {
@@ -53,7 +50,6 @@ export class RegisterComponent implements OnInit {
     this.myForm.passwordConf.setErrors(errs);
   }
 
-  // TOD Kevin - Need some sort of confirmation that the user has been signed up successfully
   registerUser() {
     this.submitted = true;
     LogInvalidComponents(this.myForm);
@@ -68,12 +64,10 @@ export class RegisterComponent implements OnInit {
         // map to the value we want on the backend.
         this.registerForm.value.password = this.registerForm.value.password;
         this.registerForm.value.passwordConf = this.registerForm.value.passwordConf;
-        this.apiService.register(this.registerForm.value).subscribe((res) => {
-          this.toastr.success('You have successfully registered.');
-          this.router.navigateByUrl('/user/verify');
-        },
-          (error) => {
-            this.toastr.error(error.message);
+        this.apiService.register(this.registerForm.value).subscribe(
+          (res) => {
+            this.toastr.success('You have successfully registered.');
+            this.router.navigateByUrl('/user/verify');
           });
       }
     }

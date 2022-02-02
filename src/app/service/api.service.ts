@@ -26,6 +26,15 @@ export class ApiService {
     private toastr: ToastrService) { }
 
   // Create
+  createRegistrationCode(data): Observable<any> {
+    let url = `${this.baseUri}/registration-code/create`;
+    return this.http.post(url, data)
+      .pipe(
+        catchError(e => {
+          this.errorMgmt(e); return EMPTY;
+        })
+      )
+  }
   createRSVP(data): Observable<any> {
     let url = `${this.baseUri}/rsvp/create`;
     return this.http.post(url, data)
@@ -55,6 +64,9 @@ export class ApiService {
   }
 
   // Get all
+  getRegistrationCodes() {
+    return this.http.get(`${this.baseUri}/registration-code/list`);
+  }
   getRSVPs() {
     return this.http.get(`${this.baseUri}/rsvp/list`);
   }
@@ -203,6 +215,7 @@ export class ApiService {
         } else {
           this.getUser(res._id).subscribe((res) => {
             this.currentUser = res.msg;
+            this.toastr.success('Login successful.');
             this.ngZone.run(() => this.router.navigateByUrl('user/profile/' + res.msg._id));
           })
         }
@@ -274,6 +287,10 @@ export class ApiService {
           error.error.message.indexOf('jwt expired')) {
           this.logout()
         }
+      } else if (error.error.length > 0){
+        error.error.forEach(err => {
+          errorMessage += `${err.message}\r\n`;
+        });
       } else {
         errorMessage = error.error;
       }

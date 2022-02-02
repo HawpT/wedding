@@ -13,6 +13,7 @@ import testRoute from './routes/test.route';
 import dataRoute from './routes/data.route';
 import { processAndSendEmailsJob, testVerificationEmail } from './services/email.service';
 import dotenv from 'dotenv';
+import registrationCodeRoute from './routes/registration-code';
 
 dotenv.config({ path: '.env' });
 
@@ -53,6 +54,7 @@ app.use('/api/user', authRotue);
 app.use('/api/role', roleRoute);
 app.use('/api/test', testRoute);
 app.use('/api/data', dataRoute);
+app.use('/api/registration-code', registrationCodeRoute);
 
 const staticDir = join(__dirname, process.env.STATIC_DIR);
 //const staticDir = path.join(__dirname, '../camp');
@@ -66,7 +68,7 @@ app.get('*', (req, res, next) => {
 });
 
 // Create port
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4001;
 const server = app.listen(port, () => {
   console.log('Connected to port ' + port);
 });

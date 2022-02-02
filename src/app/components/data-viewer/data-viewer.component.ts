@@ -4,7 +4,7 @@ import { objectToJson } from '@app/helper.methods';
 @Component({
   selector: 'app-data-viewer',
   templateUrl: './data-viewer.component.html',
-  styleUrls: ['./data-viewer.component.less']
+  styleUrls: ['./data-viewer.component.scss']
 })
 export class DataViewerComponent {
   @Input() data;

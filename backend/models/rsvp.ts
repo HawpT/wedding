@@ -1,6 +1,10 @@
 import * as mongoose from 'mongoose';
 import { Schema, Model, Document, Types } from 'mongoose';
 
+export interface OtherMeal extends Document {
+  name: String,
+  attending: Boolean,
+}
 export interface RSVP extends Document {
   userId: Types.ObjectId,
   attending: Boolean,
@@ -9,6 +13,7 @@ export interface RSVP extends Document {
   fridayNight: Boolean,
   saturdayNight: Boolean,
   rehearsalDinner: Boolean,
+  otherMeals: [OtherMeal],
   createdAt: Date,
   updatedAt: Date
 }
@@ -36,6 +41,9 @@ const schema = new Schema({
   },
   rehearsalDinner: {
     type: Boolean
+  },
+  otherMeals: {
+    type: [Object]
   }
 
 }, {

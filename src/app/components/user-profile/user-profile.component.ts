@@ -9,7 +9,7 @@ import { objectToJson } from '@app/helper.methods';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.less']
+  styleUrls: ['./user-profile.component.scss']
 })
 
 export class UserProfileComponent extends RoleAuth {

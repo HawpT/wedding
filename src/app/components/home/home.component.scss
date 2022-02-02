@@ -1,0 +1,50 @@
+
+@lavender: #dcd0ff;
+@olive: #dcffd0;
+@cream: #fff4d0;
+@grey: #414141;
+@light-grey: #646464;
+@white: #fff;
+@black: #000;
+@red: #971717;
+@blue: #1316d1;
+@purple: #6f0c96;
+@green: #28a745;
+@yellow: #bfac00;
+@pink: #ae40a5;
+@bright-red: #da4444;
+
+.image-banner-left {
+  background-image: url(/assets/img/proposal.jpg);
+}
+
+.image-banner-right {
+  background-image: url(/assets/img/us.jpg);
+}
+
+.image-banner-left,
+.image-banner-right {
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+
+  div {
+    height:100vh;
+  }
+}
+
+.image-banner-content {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}

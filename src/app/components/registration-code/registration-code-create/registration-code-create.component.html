@@ -1,0 +1,45 @@
+<form focusInvalidInput [formGroup]="registrationCodeForm" (ngSubmit)="registrationCode()">
+  <div class="container">
+    <div class="row">
+
+      <div class="spacing"></div>
+      <hr class="hr-style">
+      <div class="spacing"></div>
+
+      <div>
+        <span class="text-larger">Add a registration Code</span>
+      </div>
+
+      <div class="spacing"></div>
+
+      <div class="col-md-12 form-group">
+        <span class="input input--madoka" [class]="{'input--filled': !!myForm.code.value, 'input--error': submitted && myForm.code.errors}">
+          <input class="input__field input__field--madoka" type="text" formControlName="code" id="input-code">
+          <label class="input__label input__label--madoka" for="code">
+            <svg class="graphic graphic--madoka" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
+              <path d="m0,0l404,0l0,77l-404,0l0,-77z"></path>
+            </svg>
+            <span class="input__label-content input__label-content--madoka">Code <i class="fas fa-asterisk"></i></span>
+          </label>
+        </span>
+        <!-- error -->
+        <div class="error" *ngIf="submitted && myForm.code.errors?.required">
+          Code is required.
+        </div>
+        <div class="error" *ngIf="submitted && (myForm.code.errors?.minLength || myForm.code.errors?.maxLength)">
+          Enter a code (between 1 and 100 characters).
+        </div>
+      </div>
+
+      <div class="spacing"></div>
+
+      <div class="col-md-6 form-group">
+        <button type="submit" class="btn btn-block">Save</button>
+      </div>
+
+      <hr class="hr-style">
+      <div class="spacing"></div>
+
+    </div>
+  </div>
+</form>

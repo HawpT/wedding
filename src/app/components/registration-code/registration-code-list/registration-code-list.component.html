@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <a class="btn gradient" routerLinkActive="active" routerLink="/registration-code/create">Create Regitration Code</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="list-group">
+        <div class="list-group-item" *ngFor="let regCode of RegistrationCodes">
+          <div class="inline-block"><span>Code: {{regCode.code}}<br>Claimed: {{regCode.claimed}}</span></div>
+          <a class="right btn gradient" (click)="deleteRegistrationCode(regCode)">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

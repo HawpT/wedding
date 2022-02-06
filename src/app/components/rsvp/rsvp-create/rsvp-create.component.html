@@ -6,22 +6,21 @@
       <hr class="hr-style">
       <div class="spacing"></div>
 
-      <div>
-        <span class="text-larger">Add a registration Code</span>
-      </div>
+      <h2>/We can't wait to hear from you.</h2>
 
       <div class="spacing"></div>
 
 
-      <div class="col-md-4 form-group">
-        <mat-form-field appearance="fill">
-          <mat-label>Attending</mat-label>
-          <mat-select formControlName="attending">
-            <mat-option [value]=""></mat-option>
-            <mat-option [value]="true">Yes</mat-option>
-            <mat-option [value]="false">No</mat-option>
-          </mat-select>
-        </mat-form-field>
+      <div class="col-md-4 form-group flex">
+        <div class="cs-select cs-skin-underline" [class]="{'cs-active': attendingActive}" tabindex="0">
+          <span class="cs-placeholder" (click)="toggleAttending()">{{attendingText}}</span>
+          <div class="cs-options">
+            <ul> 
+              <li data-option="" (click)="attending(true)"><span>Yes</span></li>
+              <li data-option="" (click)="attending(false)"><span>No</span></li>
+            </ul>
+          </div>
+        </div>
         <!-- error -->
         <div class="error" *ngIf="submitted && myForm.attending.errors?.required">
           Code is required.

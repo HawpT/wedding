@@ -5,8 +5,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
-import { MatSelectModule } from '@angular/material/select';
-
 import { environment } from '@environments/environment';
 import { ApiService } from '@service/api.service';
 import { AuthInterceptor } from '@service/authconfig.interceptor';
@@ -83,7 +81,6 @@ import { RegistrationCodeCreateComponent } from '@components/registration-code/r
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    MatSelectModule,
     ToastrModule.forRoot({
       timeOut: 10000,
       preventDuplicates: true,

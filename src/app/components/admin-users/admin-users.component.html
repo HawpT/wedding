@@ -12,7 +12,7 @@
             <div class="dropdown-menu">
               <div class="multi-select" multiple>
                 <div class="multi-select-option" *ngFor="let role of roles"
-                  [ngClass]="{'selected': user.roles.includes(role.name)}"
+                  [class]="{'selected': user.roles.includes(role.name)}"
                   (click)="toggleUserRole($event, role.name, user)">
                   <i class="fa fa-check"></i><i class="fa fa-times"></i> {{role.name}}
                 </div>

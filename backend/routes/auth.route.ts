@@ -125,13 +125,13 @@ auth.route('/login').post(async (req, res, next) => {
     });
     if (!user) {
       return res.status(401).json({
-        message: 'Authentication failed'
+        message: 'Your email or password is incorrect.'
       });
     }
     const correctPassword = await bcrypt.compare(req.body.password, user.password);
     if (!correctPassword) {
       return res.status(401).json({
-        message: 'Authentication failed'
+        message: 'Your email or password is incorrect.'
       });
     }
     if (!user.emailVerified) {

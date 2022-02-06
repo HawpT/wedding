@@ -15,6 +15,7 @@ import { LogInvalidComponents } from '@app/helper.methods';
 export class RsvpCreateComponent extends RoleAuth {
   submitted = false;
   rsvpForm: FormGroup;
+  attendingActive = false;
 
   constructor(
     public fb: FormBuilder,
@@ -24,7 +25,7 @@ export class RsvpCreateComponent extends RoleAuth {
     super('create', 'rsvp', apiService);
 
     this.rsvpForm = this.fb.group({
-      attending:       [true, [Validators.required]],
+      attending:       [null, [Validators.required]],
       plusOne:         [''],
       thursdayNight:   [false],
       fridayNight:     [false],
@@ -36,6 +37,28 @@ export class RsvpCreateComponent extends RoleAuth {
 
   get myForm() {
     return this.rsvpForm.controls;
+  }
+
+  attending(val: boolean){
+    if (val !== this.myForm.attending.value) {
+      this.myForm.attending.setValue(val);
+    }
+    this.attendingActive = false;
+  }
+  
+  get attendingText(): string {
+    switch (this.myForm.attending.value) {
+      case true: 
+        return 'Yes';
+      case false: 
+        return 'No';
+      default:
+        return 'Will you be attending?'
+    }
+  }
+
+  toggleAttending(){
+    this.attendingActive = !this.attendingActive;
   }
 
   // tslint:disable-next-line: max-line-length

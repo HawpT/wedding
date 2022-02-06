@@ -4,6 +4,7 @@ node_modules/*
 .vscode/
 .vscode/*
 .vs/*
+.angular/*
 
 */dist/*
 

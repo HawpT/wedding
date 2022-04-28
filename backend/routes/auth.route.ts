@@ -156,7 +156,7 @@ auth.route('/login').post(async (req, res, next) => {
     res.status(200).json({
       token: jwtToken,
       expiresIn: parseInt(process.env.AUTH_TOKEN_TIMEOUT),
-      _id: user._id
+      user: user
     });
   }
   catch(err) {

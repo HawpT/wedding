@@ -49,7 +49,7 @@ export class RsvpCreateComponent extends RoleAuth {
     if (createOrEdit === CREATE) {
       this.apiService.hasCurrentUserRSVPed().subscribe((res) => {
         if (res)
-          this.router.navigateByUrl('/rsvp/edit');
+          this.router.navigateByUrl(`/rsvp/edit/${res}`);
       }, (error) => {
         this.toastr.error(error.message);
       });

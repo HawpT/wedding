@@ -9,16 +9,10 @@ export class RoleAuth {
   constructor(action: string, subject: string, apiService: ApiService) {
     let raa = new RoleAuthActions();
     this.valid = (raa.actions.includes(action) && raa.subjects.includes(subject));
-    if (!this.valid) throw 'Invalid action or subject role RoleAuthAction';
-    if (!apiService.currentUser) {
-      apiService.getCurrentUser().subscribe((res) => {
-        this.currentUser = res.msg;
-        dispatchEvent(this.currentUserChanged);
-      });
-    } else {
-      this.currentUser = apiService.currentUser;
-      dispatchEvent(this.currentUserChanged);
-    }
+    if (!this.valid) 
+      throw 'Invalid action or subject role RoleAuthAction';
+    this.currentUser = apiService.getCurrentUser;
+    dispatchEvent(this.currentUserChanged);
   }
 }
 

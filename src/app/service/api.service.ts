@@ -16,7 +16,8 @@ export class ApiService {
   @Output('apiAuthEvent') apiAuthEvent: EventEmitter<string> = new EventEmitter<string>();
   baseUri: string = environment.baseUri;
   headers = new HttpHeaders().set('Content-Type', 'application/json');
-  currentUser: User;
+  get accessTokenCookie() { return 'access_token' }
+  private currentUser: User;
 
   constructor(
     public router: Router,
@@ -92,14 +93,11 @@ export class ApiService {
       })
     )
   }
-  hasCurrentUserRSVPed(): Observable<boolean> {
-    if (!this.currentUser)
-      return scheduled<boolean>([false], asapScheduler);
-    let url = `${this.baseUri}/rsvp/user/${this.currentUser._id}`
+  hasCurrentUserRSVPed(): Observable<String> {
+    let url = `${this.baseUri}/rsvp/user/${this.getCurrentUser._id}`
     return this.http.get(url, { headers: this.headers }).pipe(
-      map((res: Response) => {
-        this.currentUser.hasRSVP = !!res;
-        return !!res;
+      map((res: any) => {
+        return res._id;
       }),
       catchError(e => {
         this.errorMgmt(e); return EMPTY;
@@ -118,13 +116,15 @@ export class ApiService {
       })
     )
   }
-  getCurrentUser(): Observable<any> {
+  get getCurrentUser(): User {
+    if (!!this.currentUser)
+      return this.currentUser;
     let api = `${this.baseUri}/user/current/`;
-    return this.http.get(api, { headers: this.headers }).pipe(
-      map((res: any) => {
+    this.http.get(api, { headers: this.headers }).toPromise().then(
+      (res: any) => {
         this.currentUser = res.msg;
         return res.msg || {}
-      }),
+      },
       catchError(e => {
         this.errorMgmt(e); return EMPTY;
       })
@@ -222,18 +222,15 @@ export class ApiService {
   login(user: User) {
     return this.http.post<any>(`${this.baseUri}/user/login`, user)
       .subscribe((res: any) => {
-        localStorage.setItem('access_token', res.token);
+        this.token = res.token;
+        this.currentUser = res.user;
+        this.toastr.success('Login successful.');
         let returnUrl = this.router.parseUrl(this.router.url).queryParams['returnUrl'];
         this.apiAuthEvent.emit('login');
-        if (returnUrl) {
+        if (returnUrl)
           this.ngZone.run(() => this.router.navigateByUrl(returnUrl));
-        } else {
-          this.getUser(res._id).subscribe((res) => {
-            this.currentUser = res.msg;
-            this.toastr.success('Login successful.');
-            this.ngZone.run(() => this.router.navigateByUrl('user/profile/' + res.msg._id));
-          })
-        }
+        else
+          this.ngZone.run(() => this.router.navigateByUrl('user/profile/' + res.user._id));
       },
         (err: any) => {
           if (err.status === 476){
@@ -272,17 +269,20 @@ export class ApiService {
     });
   }
 
-  getToken() {
-    return localStorage.getItem('access_token');
+  get token() {
+    return localStorage.getItem(this.accessTokenCookie);
+  }
+
+  set token(input: string) {
+    localStorage.setItem(this.accessTokenCookie, input)
   }
 
   get isLoggedIn(): boolean {
-    let authToken = localStorage.getItem('access_token');
-    return (authToken !== null) ? true : false;
+    return (this.token !== null) ? true : false;
   }
 
   logout() {
-    let removeToken = localStorage.removeItem('access_token');
+    let removeToken = localStorage.removeItem(this.accessTokenCookie);
     this.apiAuthEvent.emit('logout');
     if (removeToken == null) {
       this.ngZone.run(() => this.router.navigateByUrl('login'));

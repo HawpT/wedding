@@ -47,7 +47,7 @@ export class AdminUsersComponent extends RoleAuth {
   }
 
   deleteUser(user: User) {
-    if (this.apiService.currentUser && this.apiService.currentUser._id != user._id) {
+    if (this.apiService.getCurrentUser && this.apiService.getCurrentUser._id != user._id) {
       this.apiService.deleteUser(user._id).subscribe((res: any) => {
         this.toastr.success('User deleted successfully.');
       });

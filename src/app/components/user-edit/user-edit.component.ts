@@ -43,15 +43,8 @@ export class UserEditComponent extends RoleAuth implements OnInit {
     } else if (this.actRoute.snapshot) {
 
     } else {
-      if (this.apiService.currentUser) {
-        this.user = this.apiService.currentUser;
-        this.setUserValues();
-      } else {
-        this.apiService.getCurrentUser().subscribe((res) => {
-          this.user = res.msg as User;
-          this.setUserValues();
-        });
-      }
+      this.user = this.apiService.getCurrentUser;
+      this.setUserValues();
     }
   }
 

@@ -1,10 +1,6 @@
 import * as mongoose from 'mongoose';
 import { Schema, Model, Document, Types } from 'mongoose';
 
-export interface OtherMeal extends Document {
-  name: String,
-  attending: Boolean,
-}
 export interface RSVP extends Document {
   userId: Types.ObjectId,
   attending: Boolean,
@@ -12,8 +8,14 @@ export interface RSVP extends Document {
   thursdayNight: Boolean,
   fridayNight: Boolean,
   saturdayNight: Boolean,
+  thursdayDinner: Boolean,
+  fridayBreakfast: Boolean,
+  fridayLunch: Boolean,
   rehearsalDinner: Boolean,
-  otherMeals: [OtherMeal],
+  bridesBrunch: Boolean,
+  boysBrews: Boolean,
+  plusOneBridesBrunch: Boolean,
+  plusOneBoysBrews: Boolean,
   createdAt: Date,
   updatedAt: Date
 }
@@ -39,13 +41,42 @@ const schema = new Schema({
   saturdayNight: {
     type: Boolean
   },
+  accommodation: {
+    type: String
+  },
+  thursdayDinner: {
+    type: Boolean
+  },
+  fridayBreakfast: {
+    type: Boolean
+  },
+  fridayLunch: {
+    type: Boolean
+  },
   rehearsalDinner: {
     type: Boolean
   },
-  otherMeals: {
-    type: [Object]
-  }
-
+  mealHelp: {
+    type: Boolean
+  },
+  bridesBrunch: {
+    type: Boolean
+  },
+  boysBrews: {
+    type: Boolean
+  },
+  plusOneBridesBrunch: {
+    type: Boolean
+  },
+  plusOneBoysBrews: {
+    type: Boolean
+  },
+  notes: {
+    type: String
+  },
+  angelsLanding: {
+    type: Boolean
+  },
 }, {
   collection: 'rsvps',
   timestamps: true

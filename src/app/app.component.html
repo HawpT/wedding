@@ -1,10 +1,14 @@
 <header *ngIf="router.url != '/'">
   <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-    <a class="navbar-brand cursive" href="/">Kevin and McKenna</a>
+    <a class="navbar-brand cursive" href="/">K<span class="hide-600">evin</span>&nbsp;<small>&amp;</small>&nbsp;M<span class="hide-600">cKenna</span></a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link"  routerLinkActive="active" routerLink="/rsvp/create">RSVP</a>
+          <a *ngIf="this.apiService?.currentUser?.hasRSVP" class="nav-link" routerLinkActive="active" routerLink="/rsvp/create">RSVP</a>
+          <a *ngIf="!this.apiService?.currentUser?.hasRSVP" class="nav-link" routerLinkActive="active" routerLink="/rsvp/edit">RSVP</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/info">Info</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="/contact">Contact</a>
@@ -28,17 +32,17 @@
       </ul>
     </div>
     <div class="navbar-right">
-      <a class="nav-link btn" *ngIf="this.apiService.isLoggedIn" routerLinkActive="active" routerLink="/user/profile"><i
-          class="fa fa-user"></i></a>
+      <button class="navbar-toggler btn" type="btn" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars"></i>
+      </button>
+      <a class="nav-link btn" *ngIf="this.apiService.isLoggedIn" routerLinkActive="active" routerLink="/user/profile">
+        <i class="fa fa-user"></i>
+      </a>
       <a class="nav-link btn" *ngIf="!this.apiService.isLoggedIn" routerLinkActive="active" routerLink="/login">Login</a>
-
       <button (click)="logout()" *ngIf="this.apiService.isLoggedIn" type="btn" class="btn">Logout</button>
     </div>
 
-    <button class="navbar-toggler" type="btn" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
   </nav>
 </header>
 <router-outlet></router-outlet>

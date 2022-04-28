@@ -49,18 +49,12 @@ export class AppComponent implements OnDestroy {
         });
       }
     } else {
-      this.canViewAllRSVPs = false;
     }
   }
 
   checkAuth() {
     this.apiService.getRoles().subscribe((res: any) => {
       this.roles = res;
-      this.user.roles.forEach(userRole => {
-        let r = this.roles.find(role => role.name === userRole);
-        if (r.actions['rsvp'] && !!r.actions['rsvp']['view-all'])
-          this.canViewAllRSVPs = true;
-      });
     });
   }
 

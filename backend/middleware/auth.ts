@@ -26,6 +26,9 @@ export default function authroize(req, res, next) {
     const noAuthActions = ['login', 'register'];
     if (noAuthActions.includes(subject)) return next();
 
+    if (userId)
+      req.body.userId = userId;
+
     if (subject === 'user' && action === 'current') {
       req.currentUserId = userId;
       return next();

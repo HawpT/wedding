@@ -1,62 +1,13 @@
 <form focusInvalidInput [formGroup]="rsvpForm" (ngSubmit)="submit()">
-  <div class="container">
+  <div class="container text-center">
     <div class="row justify-content-center">
       <div class="col-md-12">
-        <h2>Location</h2>
-      </div>
-      <div class="col-md-12">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3179.5642486831903!2d-113.06550188435975!3d37.16305955488863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80cae7acbe3fb9ad%3A0xf92c6dcdcdbf8623!2sZion%20Red%20Rock%20Chalet!5e0!3m2!1sen!2sus!4v1646604836442!5m2!1sen!2sus" 
-          width="1200" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-
-      <div class="col-md-12">
-        <h2>Schedule - September 8-10th</h2>
-      </div>
-
-      <div class="col-md-12">
-        <p>We will be spending the night Thursday, Friday, and Saturday. While you don't have to spend the night, we encourage you to spend at least Friday and Saturday night so you don't have to worry about travel on the day of. A tentative schedule of the weekend is as follows: </p>
-        
-        <table class="schedule">
-          <thead>
-            <th>Thursday</th><th></th><th></th>
-          </thead>
-          <tbody>
-            <tr><td>6:00 PM</td><td class="spacer"></td><td>Dinner</td></tr>
-            <tr><td>8:00 PM</td><td class="spacer"></td><td>Codenames Tournament</td></tr>
-            <tr><td>&nbsp;</td></tr>
-          </tbody>
-          <thead>
-            <th>Friday</th><th></th><th></th>
-          </thead>
-          <tbody>
-            <tr><td>9:00 AM</td><td class="spacer"></td><td>Hike Angels Landing</td></tr>
-            <tr><td>6:00 PM</td><td class="spacer"></td><td>Rehersal Dinner</td></tr>
-            <tr><td>8:00 PM</td><td class="spacer"></td><td>Games</td></tr>
-            <tr><td>&nbsp;</td></tr>
-          </tbody>
-          <thead>
-            <th>Saturday</th><th></th><th></th>
-          </thead>
-          <tbody>
-            <tr><td>11:00 AM</td><td class="spacer"></td><td>Bride's Brunch & Boys Brews*</td></tr>
-            <tr><td>7:00 PM</td><td class="spacer"></td><td>Wedding Ceremony</td></tr>
-            <tr><td>7:45 PM</td><td class="spacer"></td><td>Reception Dinner</td></tr>
-            <tr><td>9:30 PM</td><td class="spacer"></td><td>Trivia</td></tr>
-            <tr><td>10:30 PM</td><td class="spacer"></td><td>Old People Go to Bed</td></tr>
-            <tr><td>&nbsp;</td></tr>
-          </tbody>
-        </table>
-        <span><small>* as it is tradition for the groom not to see the bride before the wedding, there will be a brunch at the house attended by the bride and the groom will be headed to a nearby place to grab a beer and lunch</small></span>
-        <br>
-        <br>
         <h2>We can't wait to hear from you.</h2>
       </div>
       
       <div class="spacing"></div>
 
-      <div class="col-md-4 form-group flex">
+      <div class="col-md-12 form-group flex">
         <div class="cs-select cs-skin-underline" [class]="{'cs-active': attendingActive}" tabindex="0">
           <span class="cs-placeholder" (click)="toggleAttending()">{{attendingText}}</span>
           <div class="cs-options">
@@ -66,40 +17,166 @@
             </ul>
           </div>
         </div>
-        <!-- error -->
-        <div class="error" *ngIf="submitted && myForm.attending.errors?.required">
-          Code is required.
-        </div>
-        <div class="error" *ngIf="submitted && (myForm.attending.errors?.minLength || myForm.attending.errors?.maxLength)">
-          Enter a code (between 1 and 100 characters).
-        </div>
       </div>
 
       <div class="spacing"></div>
     </div>
-    <div class="row  justify-content-center" *ngIf="myForm.attending.value">
+    <div class="row justify-content-center" *ngIf="myForm.attending.value">
 
-      <div class="col-md-6 form-group">
+      <div class="col-md-12 form-group">
         <span class="input input--madoka" [class]="{'input--filled': !!myForm.plusOne.value}" >
           <input class="input__field input__field--madoka" type="text" formControlName="plusOne" id="input-plusOne">
           <label class="input__label input__label--madoka" for="plusOne">
             <svg class="graphic graphic--madoka" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
               <path d="m0,0l404,0l0,77l-404,0l0,-77z"></path>
             </svg>
-            <span class="input__label-content input__label-content--madoka">If you are attending with someone, what is their name? <i class="fas fa-asterisk"></i></span>
+            <span class="input__label-content input__label-content--madoka">If you are attending with a partner, what is their name?</span>
           </label>
         </span>
       </div>
 
       <div class="col-md-12 form-group ac-custom ac-checkbox ac-cross">
         <h2>Which Nights are you planning on staying?</h2>
-        <div><input id="cb1" name="cb1" type="checkbox"><label for="cb1">Thursday</label><svg viewBox="0 0 100 100"></svg></div>
-        <div><input id="cb2" name="cb2" type="checkbox"><label for="cb2">Friday</label><svg viewBox="0 0 100 100"></svg></div>
-        <div><input id="cb3" name="cb3" type="checkbox"><label for="cb3">Saturday</label><svg viewBox="0 0 100 100"></svg></div>
+        <div (click)="toggleNight('thursdayNight')">
+          <input name="thursdayNight" type="checkbox" formControlName="thursdayNight">
+          <label for="thursdayNight" >Thursday</label>
+          <span [class]="{'hide': !myForm.thursdayNight.value}"><i class="fa fa-check" ></i></span>
+        </div>
+        <div (click)="toggleNight('fridayNight')">
+          <input name="fridayNight" type="checkbox" formControlName="fridayNight">
+          <label for="fridayNight">Friday</label>
+          <span [class]="{'hide': !myForm.fridayNight.value}"><i class="fa fa-check" ></i></span>
+        </div>
+        <div (click)="toggleNight('saturdayNight')">
+          <input name="saturdayNight" type="checkbox" formControlName="saturdayNight">
+          <label for="saturdayNight">Saturday</label>
+          <span [class]="{'hide': !myForm.saturdayNight.value}"><i class="fa fa-check" ></i></span>
+        </div>
       </div>
 
       <div class="spacing"></div>
 
+      <div class="col-md-12 form-group ac-custom ac-checkbox ac-cross">
+        <h2>Where will you be staying?</h2>
+        <div (click)="toggleAccommodation('venue')">
+          <input name="accommodationVenue" type="checkbox">
+          <label for="accommodationVenue" >At the Venue House</label>
+          <span [class]="{'hide': myForm.accommodation.value != 'venue'}"><i class="fa fa-check" ></i></span>
+        </div>
+        <div (click)="toggleAccommodation('other')">
+          <input name="accommodationOther" type="checkbox">
+          <label for="accommodationOther">Booking Own Room</label>
+          <span [class]="{'hide': myForm.accommodation.value != 'other'}"><i class="fa fa-check" ></i></span>
+        </div>
+      </div>
+
+      <div class="spacing"></div>
+
+      <div class="col-md-12 form-group ac-custom ac-checkbox ac-cross">
+        <h4>We are hoping to make all meals available at the house. 
+          To make that happen, guests can sign up to help provide a meal. 
+          Let us know if you which meals you would like to have so we can give them a headcount.
+          If you have questions, contact us. The rehearsal dinner will be provideded by the bride and groom.
+        </h4>
+        <div (click)="toggleMeal('thursdayDinner')">
+          <input name="thursdayDinner" type="checkbox" formControlName="thursdayDinner">
+          <label for="thursdayDinner" >Thursday Dinner</label>
+          <span [class]="{'hide': !myForm.thursdayDinner.value}"><i class="fa fa-check" ></i></span>
+        </div>
+        <div (click)="toggleMeal('fridayBreakfast')">
+          <input name="fridayBreakfast" type="checkbox" formControlName="fridayBreakfast">
+          <label for="fridayBreakfast">Friday Breakfast</label>
+          <span [class]="{'hide': !myForm.fridayBreakfast.value}"><i class="fa fa-check" ></i></span>
+        </div>
+        <div (click)="toggleMeal('fridayLunch')">
+          <input name="fridayLunch" type="checkbox" formControlName="fridayLunch">
+          <label for="fridayLunch">Friday Sack Lunch</label>
+          <span [class]="{'hide': !myForm.fridayLunch.value}"><i class="fa fa-check" ></i></span>
+        </div>
+        <div (click)="toggleMeal('rehearsalDinner')">
+          <input name="rehearsalDinner" type="checkbox" formControlName="rehearsalDinner">
+          <label for="rehearsalDinner">Rehearsal Dinner</label>
+          <span [class]="{'hide': !myForm.rehearsalDinner.value}"><i class="fa fa-check" ></i></span>
+        </div>
+      </div>
+
+      <div class="spacing"></div>
+
+      <div class="col-md-12 form-group ac-custom ac-checkbox ac-cross">
+        <h4>On that note, are you interested in helping provide a meal?</h4>
+        <div (click)="toggleMealHelp(true)">
+          <input name="mealHelp" type="radio">
+          <label for="mealHelp" >Yes</label>
+          <span [class]="{'hide': !myForm.mealHelp.value}"><i class="fa fa-check" ></i></span>
+        </div>
+        <div (click)="toggleMealHelp(false)">
+          <input name="mealHelp" type="radio">
+          <label for="mealHelp">No</label>
+          <span [class]="{'hide': myForm.mealHelp.value}"><i class="fa fa-check" ></i></span>
+        </div>
+      </div>
+
+      <div class="col-md-12 form-group ac-custom ac-checkbox ac-cross">
+        <h6>As it is tradition for the groom not to see the bride before the wedding, there will be a brunch at the house attended by the bride and the groom will be headed to a nearby place to grab a beer and lunch</h6>
+        <p>Saturday Brunch Options</p>
+        <div (click)="toggleMeal('bridesBrunch')">
+          <input name="bridesBrunch" type="checkbox" formControlName="bridesBrunch">
+          <label for="bridesBrunch">Brides Brunch</label>
+          <span [class]="{'hide': !myForm.bridesBrunch.value}"><i class="fa fa-check" ></i></span>
+        </div>
+        <div (click)="toggleMeal('boysBrews')">
+          <input name="boysBrews" type="checkbox" formControlName="boysBrews">
+          <label for="boysBrews">Boys Brews</label>
+          <span [class]="{'hide': !myForm.boysBrews.value}"><i class="fa fa-check" ></i></span>
+        </div>
+      </div>
+
+      <div class="col-md-12 form-group ac-custom ac-checkbox ac-cross" *ngIf="myForm.plusOne.value">
+        <p>Saturday Brunch Options for {{myForm.plusOne.value}}</p>
+        <div (click)="toggleMeal('plusOneBridesBrunch')">
+          <input name="plusOneBridesBrunch" type="checkbox" formControlName="plusOneBridesBrunch">
+          <label for="plusOneBridesBrunch">Brides Brunch</label>
+          <span [class]="{'hide': !myForm.plusOneBridesBrunch.value}"><i class="fa fa-check" ></i></span>
+        </div>
+        <div (click)="toggleMeal('plusOneBoysBrews')">
+          <input name="plusOneBoysBrews" type="checkbox" formControlName="plusOneBoysBrews">
+          <label for="plusOneBoysBrews">Boys Brews</label>
+          <span [class]="{'hide': !myForm.plusOneBoysBrews.value}"><i class="fa fa-check" ></i></span>
+        </div>
+      </div>
+
+      <div class="spacing"></div>
+
+      <div class="col-md-12 form-group ac-custom ac-checkbox ac-cross">
+        <h4>Would you like to hike Angels Landing with us Friday Morning? 
+          It is a strenuous, narrow, dangeous, 5.4 mile hike with 1500 ft of elevation gain. 
+          Zion National Park is requiring hikers to have permits this year. The lottery opens June 1st. We will try to apply to get enough for everyone who would like to go. 
+          <a href="https://www.nps.gov/zion/planyourvisit/angels-landing-hiking-permits.htm" target="_blank">Read more.</a></h4>
+        <div (click)="toggleAngels(true)">
+          <input name="angelsLanding" type="radio">
+          <label for="angelsLanding" >Oh yeah</label>
+          <span [class]="{'hide': !myForm.angelsLanding.value}"><i class="fa fa-check" ></i></span>
+        </div>
+        <div (click)="toggleAngels(false)">
+          <input name="angelsLanding" type="radio">
+          <label for="angelsLanding">No way</label>
+          <span [class]="{'hide': myForm.angelsLanding.value}"><i class="fa fa-check" ></i></span>
+        </div>
+      </div>
+      
+      <div class="spacing"></div>
+
+      <div class="col-md-12 form-group">
+        <span class="input input--madoka" [class]="{'input--filled': !!myForm.notes.value}" >
+          <input class="input__field input__field--madoka" type="text" formControlName="notes" id="input-notes">
+          <label class="input__label input__label--madoka" for="notes">
+            <svg class="graphic graphic--madoka" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
+              <path d="m0,0l404,0l0,77l-404,0l0,-77z"></path>
+            </svg>
+            <span class="input__label-content input__label-content--madoka">Any comments or questions?</span>
+          </label>
+        </span>
+      </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-md-4 form-group">

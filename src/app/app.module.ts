@@ -40,6 +40,8 @@ import { RsvpEditComponent } from '@components/rsvp/rsvp-edit/rsvp-edit.componen
 import { RsvpCreateComponent } from '@components/rsvp/rsvp-create/rsvp-create.component';
 import { RegistrationCodeListComponent } from '@components/registration-code/registration-code-list/registration-code-list.component';
 import { RegistrationCodeCreateComponent } from '@components/registration-code/registration-code-create/registration-code-create.component';
+import { InfoComponent } from '@components/info/info.component';
+import { ScheduleComponent } from './components/schedule/schedule.component';
 
 
 @NgModule({
@@ -72,7 +74,9 @@ import { RegistrationCodeCreateComponent } from '@components/registration-code/r
     RsvpEditComponent,
     RsvpCreateComponent,
     RegistrationCodeListComponent,
-    RegistrationCodeCreateComponent
+    RegistrationCodeCreateComponent,
+    InfoComponent,
+    ScheduleComponent
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,18 @@ export class RSVP {
   thursdayNight: Boolean;
   fridayNight: Boolean;
   saturdayNight: Boolean;
+  accommodation: String;
+  thursdayDinner: Boolean;
+  fridayBreakfast: Boolean;
+  fridayLunch: Boolean;
   rehearsalDinner: Boolean;
+  mealHelp: Boolean;
+  bridesBrunch: Boolean;
+  boysBrews: Boolean;
+  plusOneBridesBrunch: Boolean;
+  plusOneBoysBrews: Boolean;
+  angelsLanding: Boolean;
+  notes: String;
   createdAt: Date;
   updatedAt: Date
 }

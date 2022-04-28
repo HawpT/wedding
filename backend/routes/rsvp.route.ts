@@ -30,8 +30,20 @@ rsvpRoute.route(['/', '/list']).get(authorize, (req, res, next) => {
   });
 });
 
+// Get single rsvp by user ID
+rsvpRoute.route('/user/:id').get(authorize, (req, res, next) => {
+  rsvpModel.findOne({userId: req.params.id}, {}, {}, (error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
 // Get single rsvp
 rsvpRoute.route('/read/:id').get(authorize, (req, res, next) => {
+  
   rsvpModel.findById(req.params.id, {}, {}, (error, data) => {
     if (error) {
       return next(error);

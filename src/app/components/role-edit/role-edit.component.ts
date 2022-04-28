@@ -1,6 +1,6 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '@service/api.service';
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Constants } from '@app/constants';
 import { RoleAuth, RoleAuthActions } from '@app/models/role-auth.model';
@@ -10,10 +10,10 @@ import { LogInvalidComponents } from '@app/helper.methods';
 
 @Component({
   selector: 'app-role-edit',
-  templateUrl: './role-edit.component.html',
+  templateUrl: '../role-create/role-create.component.html',
   styleUrls: ['./role-edit.component.scss']
 })
-export class RoleEditComponent extends RoleAuth implements OnInit {
+export class RoleEditComponent extends RoleAuth {
   submitted = false;
   roleForm: FormGroup;
   raa = new RoleAuthActions();
@@ -32,9 +32,6 @@ export class RoleEditComponent extends RoleAuth implements OnInit {
     super('edit', 'role', apiService); //RoleAuth
     this.mainForm();
     this.renderCheckboxes();
-  }
-
-  ngOnInit(): void {
   }
 
   mainForm() {

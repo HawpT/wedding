@@ -14,4 +14,7 @@ export class User {
     roles: [String];
     createdAt: Date;
     updatedAt: Date;
+
+    //extra helper for UI, not in backend model
+    hasRSVP: boolean;
 }

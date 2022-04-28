@@ -6,15 +6,43 @@
     <div class="spacing"></div>
     <hr class="hr-style">
     <div class="spacing"></div>
-    <div class="flex-no-grow" *ngIf="rsvps">
+    <div class="flex-no-grow col-md-12" *ngIf="!rsvp">
       <h2>Your RSVP</h2>
-      <span *ngIf="rsvps.length === 0">You haven't RSVPed yet!</span>
-      <button class="btn btn-success" routerLinkActive="active" routerLink="/rsvp/create" *ngIf="rsvps.length === 0">RSVP now</button>
+      <span>You haven't RSVPed yet!</span>
+      <button class="btn btn-success" routerLinkActive="active" routerLink="/rsvp/create">RSVP now</button>
     </div>
-    <div *ngFor="let rsvp of rsvps">
-      <app-data-viewer [data]="rsvp"></app-data-viewer>
+    <div class="col-md-12" *ngIf="rsvp">
+      <button class="btn btn-success" routerLinkActive="active" routerLink="/rsvp/edit/{{rsvp._id}}">Edit</button>
+      <table>
+        <thead><th></th><th></th></thead>
+        <tbody>
+          <tr><td>Attending</td><td><span *ngIf="rsvp.attending"><i class="fas fa-check"></i></span><span *ngIf="!rsvp.attending"><i class="fas fa-times"></i></span></td></tr>
+          <tr *ngIf="rsvp.attending"><td>Your Plus One</td><td>{{rsvp.plusOne}}</td></tr>
+          <tr *ngIf="rsvp.attending"><td>Staying Thursday Night</td><td><span *ngIf="rsvp.thursdayNight"><i class="fas fa-check"></i></span><span *ngIf="!rsvp.thursdayNight"><i class="fas fa-times"></i></span></td></tr>
+          <tr *ngIf="rsvp.attending"><td>Staying Friday Night</td><td><span *ngIf="rsvp.fridayNight"><i class="fas fa-check"></i></span><span *ngIf="!rsvp.fridayNight"><i class="fas fa-times"></i></span></td></tr>
+          <tr *ngIf="rsvp.attending"><td>Staying Saturday Night</td><td><span *ngIf="rsvp.saturdayNight"><i class="fas fa-check"></i></span><span *ngIf="!rsvp.saturdayNight"><i class="fas fa-times"></i></span></td></tr>
+          <tr *ngIf="rsvp.attending"><td>Sleeping at the house</td><td><span *ngIf="rsvp.accommodation"><i class="fas fa-check"></i></span><span *ngIf="!rsvp.accommodation"><i class="fas fa-times"></i></span></td></tr>
+          <tr *ngIf="rsvp.attending"><td>Attending Thursday Dinner</td><td><span *ngIf="rsvp.thursdayDinner"><i class="fas fa-check"></i></span><span *ngIf="!rsvp.thursdayDinner"><i class="fas fa-times"></i></span></td></tr>
+          <tr *ngIf="rsvp.attending"><td>Attending Friday Breakfast</td><td><span *ngIf="rsvp.fridayBreakfast"><i class="fas fa-check"></i></span><span *ngIf="!rsvp.fridayBreakfast"><i class="fas fa-times"></i></span></td></tr>
+          <tr *ngIf="rsvp.attending"><td>Attending Friday Lunch</td><td><span *ngIf="rsvp.fridayLunch"><i class="fas fa-check"></i></span><span *ngIf="!rsvp.fridayLunch"><i class="fas fa-times"></i></span></td></tr>
+          <tr *ngIf="rsvp.attending"><td>Attending Rehearsal Dinner</td><td><span *ngIf="rsvp.rehearsalDinner"><i class="fas fa-check"></i></span><span *ngIf="!rsvp.rehearsalDinner"><i class="fas fa-times"></i></span></td></tr>
+          <tr *ngIf="rsvp.attending"><td>Helping With A Meal</td><td><span *ngIf="rsvp.mealHelp"><i class="fas fa-check"></i></span><span *ngIf="!rsvp.mealHelp"><i class="fas fa-times"></i></span></td></tr>
+          <tr *ngIf="rsvp.attending"><td>Attending Brides Brunch</td><td><span *ngIf="rsvp.bridesBrunch"><i class="fas fa-check"></i></span><span *ngIf="!rsvp.bridesBrunch"><i class="fas fa-times"></i></span></td></tr>
+          <tr *ngIf="rsvp.attending"><td>Attending Boys Brews</td><td><span *ngIf="rsvp.boysBrews"><i class="fas fa-check"></i></span><span *ngIf="!rsvp.boysBrews"><i class="fas fa-times"></i></span></td></tr>
+          <tr *ngIf="rsvp.attending"><td>+1 Attending Brides Brunch</td><td><span *ngIf="rsvp.plusOneBridesBrunch"><i class="fas fa-check"></i></span><span *ngIf="!rsvp.plusOneBridesBrunch"><i class="fas fa-times"></i></span></td></tr>
+          <tr *ngIf="rsvp.attending"><td>+1 Attending Boys Brews</td><td><span *ngIf="rsvp.plusOneBoysBrews"><i class="fas fa-check"></i></span><span *ngIf="!rsvp.plusOneBoysBrews"><i class="fas fa-times"></i></span></td></tr>
+          <tr *ngIf="rsvp.attending"><td>Hiking Angels Landing</td><td><span *ngIf="rsvp.angelsLanding"><i class="fas fa-check"></i></span><span *ngIf="!rsvp.angelsLanding"><i class="fas fa-times"></i></span></td></tr>
+          <tr *ngIf="rsvp.attending"><td>Notes</td><td>{{rsvp.notes}}</td></tr>
+        </tbody>
+      </table>
     </div>
-
+    <div class="spacing"></div>
+    <hr class="hr-style">
+    <div class="spacing"></div>
+    <div class="col-md-12" *ngIf="rsvp">
+      <h2>Your Schedule</h2>
+      <app-schedule [rsvp]="rsvp"></app-schedule>
+    </div>
     <div class="spacing"></div>
     <hr class="hr-style">
     <div class="spacing"></div>

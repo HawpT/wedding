@@ -14,11 +14,10 @@ import { objectToJson } from '@app/helper.methods';
 
 export class UserProfileComponent extends RoleAuth {
   currentUser: User;
-  rsvps: RSVP[] = [];
+  rsvp: RSVP;
   //tests: Test[] = [];
   userData: any;
   camper: string = 'camper';
-  rsvp: string = 'rsvp';
   staff2: string = 'staff';
   covidReq: any;
   noVac: boolean;
@@ -31,7 +30,7 @@ export class UserProfileComponent extends RoleAuth {
     let id = this.actRoute.snapshot.paramMap.get('id');
     if (!id) {
       this.apiService.getCurrentUser().subscribe(res => {
-        this.currentUser = res.msg;
+        this.currentUser = res;
         this.getUserData(this.currentUser._id);
       });
     } else {
@@ -49,7 +48,7 @@ export class UserProfileComponent extends RoleAuth {
   getUserData(id: string) {
     this.apiService.getUserRelatedData(id).subscribe(res => {
       this.userData = res;
-      this.rsvps = res.rsvp;
+      this.rsvp = (res.rsvp as RSVP[])[0];
     });
   }
 }

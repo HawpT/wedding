@@ -1,7 +1,7 @@
 import { Injectable, Output, EventEmitter, NgZone } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
-import { EMPTY, Observable } from 'rxjs';
+import { asapScheduler, EMPTY, Observable, of, scheduled } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { User } from '@models/user.model';
@@ -92,6 +92,21 @@ export class ApiService {
       })
     )
   }
+  hasCurrentUserRSVPed(): Observable<boolean> {
+    if (!this.currentUser)
+      return scheduled<boolean>([false], asapScheduler);
+    let url = `${this.baseUri}/rsvp/user/${this.currentUser._id}`
+    return this.http.get(url, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        this.currentUser.hasRSVP = !!res;
+        return !!res;
+      }),
+      catchError(e => {
+        this.errorMgmt(e); return EMPTY;
+      })
+    );
+  }
+  
   getUser(id): Observable<any> {
     let api = `${this.baseUri}/user/read/${id}`;
     return this.http.get(api, { headers: this.headers }).pipe(
@@ -108,7 +123,7 @@ export class ApiService {
     return this.http.get(api, { headers: this.headers }).pipe(
       map((res: any) => {
         this.currentUser = res.msg;
-        return res || {}
+        return res.msg || {}
       }),
       catchError(e => {
         this.errorMgmt(e); return EMPTY;
@@ -287,7 +302,7 @@ export class ApiService {
           error.error.message.indexOf('jwt expired')) {
           this.logout()
         }
-      } else if (error.error.length > 0){
+      } else if (Array.isArray(error.error)){
         error.error.forEach(err => {
           errorMessage += `${err.message}\r\n`;
         });

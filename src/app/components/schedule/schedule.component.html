@@ -1,0 +1,42 @@
+
+<div><p class="caps">** This is our best guess. Schedule is subject to change **</p></div>
+<div class="rsvp-active" *ngIf="rsvp">
+  <span>Color Key:</span>
+  &nbsp;
+  <span class="mandatory">You signed up for</span>
+  &nbsp;-&nbsp;
+  <span class="optional">Optional</span>
+  &nbsp;-&nbsp;
+  <span class="na">N/A</span>
+</div>
+<table class="schedule" [class]="{'rsvp-active': rsvp}">
+  <thead *ngIf="!rsvp || rsvp.thursdayNight">
+    <th>Thursday</th><th></th><th></th>
+  </thead>
+  <tbody *ngIf="!rsvp || rsvp.thursdayNight">
+    <tr *ngIf=" !rsvp || rsvp?.thursdayDinner" [class]="{'mandatory': rsvp?.thursdayDinner, 'na': !rsvp?.thursdayNight}"><td>6:00 PM</td><td class="spacer"></td><td>Dinner</td></tr>
+    <tr class="optional"><td>8:00 PM</td><td class="spacer"></td><td>Codenames Tournament</td></tr>
+    <tr><td>&nbsp;</td></tr>
+  </tbody>
+  <thead>
+    <th>Friday</th><th></th><th></th>
+  </thead>
+  <tbody>
+    <tr [class]="{'mandatory': rsvp?.fridayBreakfast || rsvp?.fridayLunch, 'na': !(rsvp?.fridayBreakfast || rsvp?.fridayLunch)}"><td>8:00 AM</td><td class="spacer"></td><td>Breakfast & Pack Lunches</td></tr>
+    <tr class="optional"><td>9:00 AM</td><td class="spacer"></td><td>Hike Angels Landing</td></tr>
+    <tr [class]="{'mandatory': rsvp?.rehearsalDinner, 'na': !rsvp?.rehearsalDinner}"><td>6:00 PM</td><td class="spacer"></td><td>Rehersal Dinner</td></tr>
+    <tr class="optional"><td>8:00 PM</td><td class="spacer"></td><td>Games</td></tr>
+    <tr><td>&nbsp;</td></tr>
+  </tbody>
+  <thead>
+    <th>Saturday</th><th></th><th></th>
+  </thead>
+  <tbody>
+    <tr [class]="{'mandatory': rsvp?.boysBrews || rsvp?.bridesBrunch, 'na': !(rsvp?.boysBrews || rsvp?.bridesBrunch)}"><td>11:00 AM</td><td class="spacer"></td><td>Bride's Brunch & Boys Brews*</td></tr>
+    <tr class="mandatory"><td>7:00 PM</td><td class="spacer"></td><td>Wedding Ceremony</td></tr>
+    <tr class="mandatory"><td>7:30 PM</td><td class="spacer"></td><td>Reception Dinner</td></tr>
+    <tr class="optional"><td>9:30 PM</td><td class="spacer"></td><td>Trivia</td></tr>
+    <tr class="optional"><td>10:30 PM</td><td class="spacer"></td><td>Old People Go to Bed</td></tr>
+    <tr><td>&nbsp;</td></tr>
+  </tbody>
+</table>

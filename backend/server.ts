@@ -23,15 +23,14 @@ connect( process.env.MONGO_DB, {
   promiseLibrary: global.Promise
 }).then(() => {
   console.log('Database sucessfully connected');
-  console.log('Starting email processing daemon');
+  //console.log('Starting email processing daemon');
   
-  //testVerificationEmail();
-  processAndSendEmailsJob.start();
+  // testVerificationEmail();
+  // processAndSendEmailsJob.start();
 },
 error => {
   console.log('Database could not connected: ' + error);
-}
-);
+});
 
 // Remove MongoDB warning error
 set('useCreateIndex', true);
@@ -57,7 +56,6 @@ app.use('/api/data', dataRoute);
 app.use('/api/registration-code', registrationCodeRoute);
 
 const staticDir = join(__dirname, process.env.STATIC_DIR);
-//const staticDir = path.join(__dirname, '../camp');
 
 app.use(express.static(staticDir));
 

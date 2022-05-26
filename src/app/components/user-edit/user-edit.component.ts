@@ -13,7 +13,7 @@ import { LogInvalidComponents } from '@app/helper.methods';
   templateUrl: './user-edit.component.html',
   styleUrls: ['./user-edit.component.scss']
 })
-export class UserEditComponent extends RoleAuth implements OnInit {
+export class UserEditComponent extends RoleAuth {
   submitted = false;
   editUserForm: FormGroup;
   user: User;
@@ -41,14 +41,13 @@ export class UserEditComponent extends RoleAuth implements OnInit {
         this.setUserValues();
       });
     } else if (this.actRoute.snapshot) {
-
+      let id = this.actRoute.snapshot.paramMap.get('id');
     } else {
-      this.user = this.apiService.getCurrentUser;
-      this.setUserValues();
+      apiService.getCurrentUser().subscribe((res) => {
+        this.user = res;
+        this.setUserValues();
+      });
     }
-  }
-
-  ngOnInit(): void {
   }
 
   get myForm() {

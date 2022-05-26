@@ -97,7 +97,7 @@ auth.route('/register').post(
         }
         const hash = await bcrypt.hash(req.body.password, 10);
         req.body.password = hash;
-        req.body.emailVerified = false;
+        req.body.emailVerified = true;
         req.body.roles = ['user'];
         req.body.registrationCodeId = regCode._id;
         let newUser = await User.create(req.body);

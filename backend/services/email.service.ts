@@ -65,6 +65,7 @@ export const processAndSendEmailsJob: cron.ScheduledTask =
 
 export async function sendEmail(email: IEmail): Promise<boolean> {
   try {
+
     email.sent = true;
     await email.save();
     return true;

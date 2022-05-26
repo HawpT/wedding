@@ -67,7 +67,7 @@ export class RegisterComponent {
         this.apiService.register(this.registerForm.value).subscribe(
           (res) => {
             this.toastr.success('You have successfully registered.');
-            this.router.navigateByUrl('/user/verify');
+            this.router.navigateByUrl('/login');
           });
       }
     }

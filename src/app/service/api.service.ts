@@ -17,7 +17,7 @@ export class ApiService {
   baseUri: string = environment.baseUri;
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   get accessTokenCookie() { return 'access_token' }
-  private currentUser: User;
+  currentUser: User;
 
   constructor(
     public router: Router,
@@ -94,10 +94,10 @@ export class ApiService {
     )
   }
   hasCurrentUserRSVPed(): Observable<String> {
-    let url = `${this.baseUri}/rsvp/user/${this.getCurrentUser._id}`
+    let url = `${this.baseUri}/rsvp/user/`
     return this.http.get(url, { headers: this.headers }).pipe(
       map((res: any) => {
-        return res._id;
+        return res && res._id;
       }),
       catchError(e => {
         this.errorMgmt(e); return EMPTY;
@@ -116,15 +116,13 @@ export class ApiService {
       })
     )
   }
-  get getCurrentUser(): User {
-    if (!!this.currentUser)
-      return this.currentUser;
+  getCurrentUser(): Observable<User> {
     let api = `${this.baseUri}/user/current/`;
-    this.http.get(api, { headers: this.headers }).toPromise().then(
-      (res: any) => {
+    return this.http.get(api, { headers: this.headers }).pipe(
+      map((res: any) => {
         this.currentUser = res.msg;
         return res.msg || {}
-      },
+      }),
       catchError(e => {
         this.errorMgmt(e); return EMPTY;
       })
@@ -298,8 +296,7 @@ export class ApiService {
       if (error.error.message) {
         errorMessage = error.error.message;
         // Get server-side error
-        if (error.error.message.indexOf('Your session has expired') >= 0 ||
-          error.error.message.indexOf('jwt expired')) {
+        if (error.error.message.indexOf('Your session has expired') >= 0 || error.error.message.indexOf('jwt expired') >= 0) {
           this.logout()
         }
       } else if (Array.isArray(error.error)){

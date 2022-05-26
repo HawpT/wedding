@@ -41,7 +41,7 @@ export class RsvpEditComponent extends RsvpCreateComponent {
       return;
     }
     
-    let user = this.apiService.getCurrentUser;
+    let user = await this.apiService.getCurrentUser().toPromise();
     let userData = await this.apiService.getUserRelatedData(user._id).toPromise();
     let rsvps = userData.rsvp as RSVP[];
     this.fillFormFromData(rsvps[0]);

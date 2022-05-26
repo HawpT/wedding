@@ -29,8 +29,9 @@ export class UserProfileComponent extends RoleAuth {
     super('view', 'user', apiService);
     let id = this.actRoute.snapshot.paramMap.get('id');
     if (!id) {
-      this.currentUser = this.apiService.getCurrentUser;
-      this.getUserData(this.currentUser._id);
+      apiService.getCurrentUser().subscribe((res) => {
+        this.getUserData(res._id);
+      });
     } else {
       this.apiService.getUser(id).subscribe(res => {
         this.currentUser = res.msg;

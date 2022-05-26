@@ -9,7 +9,7 @@ export function LogInvalidComponents(controls: any) {
       invalidControls.push(k + ': ' + JSON.stringify(controls[k].errors));
     }
   });
-  if (invalidControls.length > 0) {
+  if (invalidControls.length > 0 && !environment.production) {
     console.log(invalidControls);
   }
 }

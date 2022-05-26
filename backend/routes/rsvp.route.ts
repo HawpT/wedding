@@ -41,6 +41,17 @@ rsvpRoute.route('/user/:id').get(authorize, (req, res, next) => {
   });
 });
 
+// Get current user's RSVP
+rsvpRoute.route('/user').get(authorize, (req, res, next) => {
+  rsvpModel.findOne({userId: req.body.userId}, {}, {}, (error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
 // Get single rsvp
 rsvpRoute.route('/read/:id').get(authorize, (req, res, next) => {
   

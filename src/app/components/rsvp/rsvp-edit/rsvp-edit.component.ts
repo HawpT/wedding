@@ -71,7 +71,7 @@ export class RsvpEditComponent extends RsvpCreateComponent {
   override submit(): boolean {
     LogInvalidComponents(this.myForm);
     this.submitted = true;
-    if (!this.rsvpForm.valid) {
+    if (!this.rsvpForm.valid && this.myForm.attending.value || this.myForm.attending.value === null) {
       this.toastr.error('Form invalid. Please correct any errors.');
       return false;
     } else {

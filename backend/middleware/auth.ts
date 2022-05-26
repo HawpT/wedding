@@ -3,10 +3,40 @@
 
 import Role from '../models/role';
 import jwt, { JwtPayload } from 'jsonwebtoken';
+import user from '../models/user';
+import rsvp from '../models/rsvp';
+import ITest from '../models/test.model';
+
+
 
 export default function authroize(req, res, next) {
   function errorMessage(id, subject, action) {
     return new Error(`User[${id}] is not authorizied. Subject: ${subject}. Action: ${action}`);
+  }
+  function targetingSelf(req, res, next, userId, subject, action, id) {
+    console.log('userId:' + userId, 'id:' + id);
+    if (userId === id)
+      return next();
+    Promise.all([
+      rsvp.find({
+        _id: id,
+        userId: userId
+      }),
+      ITest.find({
+        _id: id,
+        userId: userId
+      })
+    ]).then(([rsvps, tests]) => {
+      if (rsvps.length + tests.length > 0) 
+        return next();
+      res.status(401).json({
+        message: 'user not authorized'
+      });
+    }).catch((err) => {
+      res.status(401).json({
+        message: 'user not authorized'
+      });
+    });
   }
   try {
     const token = req.headers.authorization.split(' ')[1];
@@ -19,11 +49,8 @@ export default function authroize(req, res, next) {
     const subject = params[1];
     const action = params[2];
     const id = params.length > 3 ? params[3] : null;
-    const targetingSelf = id === userId;
-
-    //console.log(params);
-
     const noAuthActions = ['login', 'register'];
+    
     if (noAuthActions.includes(subject)) return next();
 
     if (userId)
@@ -53,22 +80,17 @@ export default function authroize(req, res, next) {
               });
             }
           });
-
-          //console.log(subject + ' ' + action + ' ' + id);
-          //console.log(authorizedActions);
           if (!authorizedActions) throw 'No authorized actions for user on ' + subject;
-
+          //TODO check if own data
           if (action === 'create' && !authorizedActions[subject]['create']) throw errorMessage(userId, subject, action);
-          else if (action === 'update' && targetingSelf && !authorizedActions[subject]['edit']) throw errorMessage(userId, subject, action);
+          else if (action === 'update' && authorizedActions[subject]['edit']) targetingSelf(req, res, next, userId, subject, action, id);
           else if (action === 'update' && !authorizedActions[subject]['edit-all']) throw errorMessage(userId, subject, action);
-          else if (action === 'delete' && targetingSelf && !authorizedActions[subject]['delete']) throw errorMessage(userId, subject, action);
+          else if (action === 'delete' && authorizedActions[subject]['delete']) targetingSelf(req, res, next, userId, subject, action, id);
           else if (action === 'delete' && !authorizedActions[subject]['delete-all']) throw errorMessage(userId, subject, action);
-          else if (action === 'read' && targetingSelf && !authorizedActions[subject]['view']) throw errorMessage(userId, subject, action);
+          else if (action === 'read' && authorizedActions[subject]['view']) targetingSelf(req, res, next, userId, subject, action, id);
           else if (action === 'list' && !authorizedActions[subject]['view-all']) throw errorMessage(userId, subject, action);
-
-          next();
+          else next();
         } catch (error) {
-          //TODO logging
           res.status(401).json({
             message: 'user not authorized'
           });
@@ -76,7 +98,6 @@ export default function authroize(req, res, next) {
       }
     });
   } catch (error) {
-    //TODO internal auth error logging
     res.status(401).json({
       message: `Unauthorized: ${error.message}`
     });

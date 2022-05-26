@@ -58,6 +58,7 @@
 
       <div class="col-md-12 form-group ac-custom ac-checkbox ac-cross">
         <h2>Where will you be staying?</h2>
+        <p class="error" *ngIf="submitted && myForm.accommodation.errors?.required">* Required</p>
         <div (click)="toggleAccommodation('venue')">
           <input name="accommodationVenue" type="checkbox">
           <label for="accommodationVenue" >At the Venue House</label>
@@ -104,15 +105,16 @@
 
       <div class="col-md-12 form-group ac-custom ac-checkbox ac-cross">
         <h4>On that note, are you interested in helping provide a meal?</h4>
+        <p class="error" *ngIf="submitted && myForm.mealHelp.errors?.required">* Required</p>
         <div (click)="toggleMealHelp(true)">
           <input name="mealHelp" type="radio">
           <label for="mealHelp" >Yes</label>
-          <span [class]="{'hide': !myForm.mealHelp.value}"><i class="fa fa-check" ></i></span>
+          <span [class]="{'hide': myForm.mealHelp.value === null || !myForm.mealHelp.value}"><i class="fa fa-check" ></i></span>
         </div>
         <div (click)="toggleMealHelp(false)">
           <input name="mealHelp" type="radio">
           <label for="mealHelp">No</label>
-          <span [class]="{'hide': myForm.mealHelp.value}"><i class="fa fa-check" ></i></span>
+          <span [class]="{'hide': myForm.mealHelp.value === null || myForm.mealHelp.value}"><i class="fa fa-check" ></i></span>
         </div>
       </div>
 
@@ -152,15 +154,16 @@
           It is a strenuous, narrow, dangeous, 5.4 mile hike with 1500 ft of elevation gain. 
           Zion National Park is requiring hikers to have permits this year. The lottery opens July 1st. We will try to apply to get enough for everyone who would like to go. 
           <a href="https://www.nps.gov/zion/planyourvisit/angels-landing-hiking-permits.htm" target="_blank">Read more.</a></h4>
+          <p class="error" *ngIf="submitted && myForm.angelsLanding.errors?.required">* Required</p>
         <div (click)="toggleAngels(true)">
           <input name="angelsLanding" type="radio">
           <label for="angelsLanding" >Oh yeah</label>
-          <span [class]="{'hide': !myForm.angelsLanding.value}"><i class="fa fa-check" ></i></span>
+          <span [class]="{'hide': myForm.angelsLanding.value === null || !myForm.angelsLanding.value}"><i class="fa fa-check" ></i></span>
         </div>
         <div (click)="toggleAngels(false)">
           <input name="angelsLanding" type="radio">
           <label for="angelsLanding">No way</label>
-          <span [class]="{'hide': myForm.angelsLanding.value}"><i class="fa fa-check" ></i></span>
+          <span [class]="{'hide': myForm.angelsLanding.value === null || myForm.angelsLanding.value}"><i class="fa fa-check" ></i></span>
         </div>
       </div>
       

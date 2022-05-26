@@ -43,7 +43,7 @@ export class RsvpCreateComponent extends RoleAuth {
       boysBrews:           [false],
       plusOneBridesBrunch: [false],
       plusOneBoysBrews:    [false],
-      angelsLanding:       [false],
+      angelsLanding:       [null, [Validators.required]],
       notes:               ['']
     });
     if (createOrEdit === CREATE) {
@@ -133,8 +133,8 @@ export class RsvpCreateComponent extends RoleAuth {
   // tslint:disable-next-line: max-line-length
   submit(): boolean {
     LogInvalidComponents(this.myForm);
-    this.submitted = true;
-    if (!this.rsvpForm.valid) {
+    this.submitted = true; 
+    if (!this.rsvpForm.valid && this.myForm.attending.value || this.myForm.attending.value === null) {
       this.toastr.error('Form invalid. Please correct any errors.');
       return false;
     } else {

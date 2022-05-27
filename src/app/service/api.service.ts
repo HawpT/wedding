@@ -297,7 +297,9 @@ export class ApiService {
         errorMessage = error.error.message;
         // Get server-side error
         if (error.error.message.indexOf('Your session has expired') >= 0 || error.error.message.indexOf('jwt expired') >= 0) {
-          this.logout()
+          this.logout();
+          this.toastr.info("You've been signed out due to inactivity.");
+          return;
         }
       } else if (Array.isArray(error.error)){
         error.error.forEach(err => {
@@ -310,7 +312,9 @@ export class ApiService {
     else {
       errorMessage = `Error Code: ${error.status} - Message: ${error.message}`;
     }
-    if (!environment.production) console.log(error);
-    this.toastr.error(errorMessage);
+    if (!environment.production) 
+      console.log(error);
+    if ([401, 403].indexOf(error.status) === -1) //hide auth errors
+      this.toastr.error(errorMessage);
   }
 }

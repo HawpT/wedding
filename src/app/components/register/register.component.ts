@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '@service/api.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Constants } from '@app/constants';
 import { ToastrService } from 'ngx-toastr';
 import { LogInvalidComponents } from '@app/helper.methods';
@@ -14,12 +14,14 @@ import { LogInvalidComponents } from '@app/helper.methods';
 export class RegisterComponent {
   submitted = false;
   registerForm: FormGroup;
+  regCode = '';
 
   constructor(
     private fb: FormBuilder,
     private apiService: ApiService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private actRoute: ActivatedRoute
   ) {
     this.registerForm = this.fb.group({
       nameFirst: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
@@ -28,6 +30,14 @@ export class RegisterComponent {
       password: ['', [Validators.required, Validators.pattern(Constants.PASSWORD_VALIDATION)]],
       passwordConf: ['', [Validators.required, Validators.pattern(Constants.PASSWORD_VALIDATION)]],
       registrationCode: ['', [Validators.required]]
+    });
+    
+    this.actRoute.queryParamMap.subscribe(queryParams => {
+      this.regCode = queryParams.get('regcode');
+      if (!this.regCode) //try case sensitive
+        this.regCode = queryParams.get('regCode');
+      this.myForm.registrationCode.setValue(this.regCode);
+      this.myForm.registrationCode.disable();
     });
   }
 

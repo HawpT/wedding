@@ -7,10 +7,12 @@
 
   <div class="row">
     <div class="col-md-12">
-      <div class="list-group">
+      <div class="flex">
         <div class="list-group-item" *ngFor="let regCode of RegistrationCodes">
-          <div class="inline-block"><span>Code: {{regCode.code}}<br>Claimed: {{regCode.claimed}}</span></div>
-          <a class="right btn gradient" (click)="deleteRegistrationCode(regCode)">Delete</a>
+          Code: {{regCode.code}}
+          <span *ngIf="regCode.claimed"><br>Claimed</span>
+          <a class="btn gradient" (click)="copyLink(regCode)" *ngIf="!regCode.claimed">Copy Link <i class="fas fa-copy"></i></a>
+          <a class="btn gradient" (click)="deleteRegistrationCode(regCode)" *ngIf="!regCode.claimed">Delete</a>
         </div>
       </div>
     </div>

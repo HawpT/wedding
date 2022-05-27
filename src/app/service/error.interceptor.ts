@@ -23,13 +23,12 @@ export class ErrorInterceptor implements HttpInterceptor {
         if (err.error && err.error.message) 
           err.message = err.error.message; //use our server messages
 
-        if ([401, 403].indexOf(err.status) !== -1) {
+        if ([401, 403].indexOf(err.status) >= 0) {
           //TODO error page handling
           if (err.status === 401 && err.message && (
             err.message.indexOf('Your session has expired') >= 0 || err.message.indexOf('jwt expired') >= 0 )) {
             location.replace('/login');
-          }
-          //location.reload(true);
+          } 
         }
 
         return throwError(err);

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ApiService } from '@service/api.service';
 import { RoleAuth } from '@models/role-auth.model';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registration-code-list',
@@ -13,7 +14,8 @@ export class RegistrationCodeListComponent extends RoleAuth {
 
   constructor(
     public router: Router,
-    private apiService: ApiService) {
+    private apiService: ApiService,
+    private toastr: ToastrService) {
     super('view-all', 'registration-code', apiService);
     this.getRegistrationCodes();
   }
@@ -22,6 +24,11 @@ export class RegistrationCodeListComponent extends RoleAuth {
     this.apiService.getRegistrationCodes().subscribe((data) => {
       this.RegistrationCodes = data;
     })
+  }
+
+  copyLink(registrationCode) {
+    navigator.clipboard.writeText(`${location.origin}/register?regcode=${registrationCode.code}`);
+    this.toastr.success('Link copied to keyboard.')
   }
 
   deleteRegistrationCode(registrationCode) {

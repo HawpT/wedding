@@ -24,7 +24,7 @@ export class RegistrationCodeCreateComponent  extends RoleAuth {
     super('create', 'registration-code', apiService);
 
     this.registrationCodeForm = this.fb.group({
-      code: ['', [Validators.required, Validators.pattern(Constants.MAX_LEN_100)]],
+      code: ['', [Validators.required, Validators.pattern(Constants.MAX_LEN_100), Validators.pattern(Constants.REG_CODE_VALIDATION)]],
     });
   }
 

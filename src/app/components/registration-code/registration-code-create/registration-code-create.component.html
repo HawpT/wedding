@@ -26,8 +26,8 @@
         <div class="error" *ngIf="submitted && myForm.code.errors?.required">
           Code is required.
         </div>
-        <div class="error" *ngIf="submitted && (myForm.code.errors?.minLength || myForm.code.errors?.maxLength)">
-          Enter a code (between 1 and 100 characters).
+        <div class="error" *ngIf="submitted && (myForm.code.errors?.pattern)">
+          Enter a code (between 1 and 100 characters) using upper/lower case letters, dashes, and underscores. No spaces.
         </div>
       </div>
 

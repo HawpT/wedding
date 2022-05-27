@@ -4,6 +4,7 @@ export class Constants {
     public static ZIP_VALIDATION = /^[0-9]{5}(?:-[0-9]{4})?$/;
     public static WORD_VALIDATION = '\w';
     public static PASSWORD_VALIDATION = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,32}$/;
+    public static REG_CODE_VALIDATION = /^[a-z\-_]+$/i;
     // public static CHECKBOX_TRUE = /^on$/i;
     public static YES_NO = /^(?:Yes|No)$/;
     public static LEN_2 = /.{2}/;

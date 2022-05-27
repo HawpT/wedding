@@ -13,7 +13,7 @@ export interface IRegistrationCode extends Document {
 const schema = new Schema({
   code: {
     type: String,
-    unique: true
+    unique: true,
   },
   claimed: {
     type: Boolean

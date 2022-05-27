@@ -37,7 +37,8 @@ export class RegisterComponent {
       if (!this.regCode) //try case sensitive
         this.regCode = queryParams.get('regCode');
       this.myForm.registrationCode.setValue(this.regCode);
-      this.myForm.registrationCode.disable();
+      if (!!this.regCode)
+        this.myForm.registrationCode.disable();
     });
   }
 

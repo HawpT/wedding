@@ -84,7 +84,13 @@ auth.route('/register').post(
       if (!errors.isEmpty()) {
         return res.status(422).jsonp(errors.array());
       } else {
-        const regCode = await RegistrationCode.findOne({ code: req.body.registrationCode}).exec();
+        const regCode = await RegistrationCode.findOne({ code: req.body.registrationCode }, {}, {
+          collation: { 
+            locale: 'en_US', 
+            strength: 1, 
+            caseFirst: 'off'
+          }
+        }).exec();
         if (!regCode) {
           return res.status(500).json({
             message: 'Could not find registration code.'

@@ -84,7 +84,7 @@
           Password is required.
         </div>
         <div class="error" *ngIf="submitted && myForm.password.errors?.pattern">
-          Enter a password (8 to 32 characters, at least one upper case letter and number).
+          Enter a password (8 to 32 characters, at least one upper and lower case letter and number).
         </div>
       </div>
 
@@ -103,7 +103,7 @@
           Password is required.
         </div>
         <div class="error" *ngIf="submitted && myForm.passwordConf.errors?.pattern">
-          Enter a password (8 to 32 characters, at least one upper case letter and number).
+          Enter a password (8 to 32 characters, at least one upper and lower case letter and number).
         </div>
         <div class="error" *ngIf="myForm.passwordConf.errors?.match">
           Passwords do not match!

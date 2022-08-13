@@ -2,22 +2,26 @@ import * as mongoose from 'mongoose';
 import { Schema, Model, Document, Types } from 'mongoose';
 
 export interface RSVP extends Document {
-  userId: Types.ObjectId,
-  attending: Boolean,
-  plusOne: String,
-  thursdayNight: Boolean,
-  fridayNight: Boolean,
-  saturdayNight: Boolean,
-  thursdayDinner: Boolean,
-  fridayBreakfast: Boolean,
-  fridayLunch: Boolean,
-  rehearsalDinner: Boolean,
-  bridesBrunch: Boolean,
-  boysBrews: Boolean,
+  userId             : Types.ObjectId,
+  attending          : Boolean,
+  plusOne            : String,
+  thursdayNight      : Boolean,
+  fridayNight        : Boolean,
+  saturdayNight      : Boolean,
+  accommodation      : String,
+  thursdayDinner     : Boolean,
+  fridayBreakfast    : Boolean,
+  fridayLunch        : Boolean,
+  rehearsalDinner    : Boolean,
+  mealHelp           : Boolean,
+  bridesBrunch       : Boolean,
+  boysBrews          : Boolean,
   plusOneBridesBrunch: Boolean,
-  plusOneBoysBrews: Boolean,
-  createdAt: Date,
-  updatedAt: Date
+  plusOneBoysBrews   : Boolean,
+  notes              : String,
+  angelsLanding      : Boolean,
+  createdAt          : Date,
+  updatedAt          : Date
 }
 
 // Define collection and schema

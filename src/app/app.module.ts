@@ -42,6 +42,7 @@ import { RegistrationCodeListComponent } from '@components/registration-code/reg
 import { RegistrationCodeCreateComponent } from '@components/registration-code/registration-code-create/registration-code-create.component';
 import { InfoComponent } from '@components/info/info.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
+import { RsvpReportComponent } from './components/rsvp/rsvp-report/rsvp-report.component';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
     RegistrationCodeListComponent,
     RegistrationCodeCreateComponent,
     InfoComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    RsvpReportComponent
   ],
   imports: [
     BrowserModule,

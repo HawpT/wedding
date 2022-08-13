@@ -27,6 +27,7 @@ import { RsvpListComponent } from '@components/rsvp/rsvp-list/rsvp-list.componen
 import { RegistrationCodeCreateComponent } from '@components/registration-code/registration-code-create/registration-code-create.component';
 import { RegistrationCodeListComponent } from '@components/registration-code/registration-code-list/registration-code-list.component';
 import { InfoComponent } from '@components/info/info.component';
+import { RsvpReportComponent } from '@components/rsvp/rsvp-report/rsvp-report.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -46,6 +47,7 @@ const routes: Routes = [
   { path: 'rsvp/edit', component: RsvpEditComponent, canActivate: [AuthGuard] },
   { path: 'rsvp/edit/:id', component: RsvpEditComponent, canActivate: [AuthGuard] },
   { path: 'rsvp/list', component: RsvpListComponent, canActivate: [AuthGuard] },
+  { path: 'rsvp/report', component: RsvpReportComponent, canActivate: [AuthGuard] },
   { path: 'gallery', component: GalleryComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

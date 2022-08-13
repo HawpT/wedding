@@ -25,11 +25,11 @@ export class RoleAuthActions {
   actions: string[] = [
     'create',
     'edit',
-    'edit-all',
+    'editall',
     'delete',
-    'delete-all',
+    'deleteall',
     'view',
-    'view-all'
+    'viewall'
   ];
   subjects: string[] = [
     'admin',

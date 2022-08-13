@@ -16,7 +16,7 @@ export class RegistrationCodeListComponent extends RoleAuth {
     public router: Router,
     private apiService: ApiService,
     private toastr: ToastrService) {
-    super('view-all', 'registration-code', apiService);
+    super('viewall', 'registration-code', apiService);
     this.getRegistrationCodes();
   }
 

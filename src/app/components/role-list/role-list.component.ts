@@ -14,7 +14,7 @@ export class RoleListComponent extends RoleAuth implements OnInit {
   constructor(
     public router: Router,
     private apiService: ApiService) {
-    super('view-all', 'role', apiService);
+    super('viewall', 'role', apiService);
     this.getRoles();
   }
 

@@ -10,22 +10,24 @@ import User from '../models/user';
 const dataRoute = express.Router();
 export default dataRoute;
 
-// Get All User Data
-dataRoute.route('/:id').get(authorize, (req, res, next) => {
+// Get All User Data for specific user
+dataRoute.route('/read/:id').get(authorize, (req, res, next) => {
   const id = new Types.ObjectId(req.params.id);
-
-  User.find().then();
 
   Promise.all([
     rsvp.find({
       userId: id
     }),
+    User.find({
+      userId: id
+    }),
     Test.find({
       userId: id
     })
-  ]).then(([rsvp,  test]) => {
+  ]).then(([rsvp, user, test]) => {
     res.json({
       rsvp: rsvp,
+      user: user,
       test: test
     });
   }).catch((err) => {

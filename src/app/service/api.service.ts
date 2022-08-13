@@ -129,7 +129,7 @@ export class ApiService {
     )
   }
   getUserRelatedData(id: string) {
-    let api = `${this.baseUri}/data/${id}`;
+    let api = `${this.baseUri}/data/read/${id}`;
     return this.http.get(api, { headers: this.headers }).pipe(
       map((res: any) => {
         return res || {}

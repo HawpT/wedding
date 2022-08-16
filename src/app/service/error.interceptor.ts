@@ -26,8 +26,9 @@ export class ErrorInterceptor implements HttpInterceptor {
         if ([401, 403].indexOf(err.status) >= 0) {
           //TODO error page handling
           if (err.status === 401 && err.message && (
-            err.message.indexOf('Your session has expired') >= 0 || err.message.indexOf('jwt expired') >= 0 )) {
-            location.replace('/login');
+            err.message.indexOf('Your session has expired') >= 0 || 
+            err.message.indexOf('jwt expired') >= 0)) {
+            this.apiService.logout();
           } 
         }
 

@@ -38,7 +38,7 @@ const routes: Routes = [
   { path: 'admin/users', component: AdminUsersComponent, canActivate: [AuthGuard] },
   { path: 'contact', component: ContactComponent },
   { path: 'calendar', component: CalendarComponent },
-  { path: 'info', component: InfoComponent },
+  { path: 'info', component: InfoComponent, canActivate: [AuthGuard] },
   { path: 'registration-code', pathMatch: 'full', component: RegistrationCodeCreateComponent, canActivate: [AuthGuard] },
   { path: 'registration-code/create', component: RegistrationCodeCreateComponent, canActivate: [AuthGuard] },
   { path: 'registration-code/list', component: RegistrationCodeListComponent, canActivate: [AuthGuard] },

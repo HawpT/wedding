@@ -46,29 +46,3 @@
     </tr>
   </tbody>
 </table>
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div *ngFor="let rsvp of rsvps">
-        <div>{{getUser(rsvp)}}</div>
-        <div *ngIf="rsvp.attending">Attending</div>
-        <div *ngIf="rsvp.attending && rsvp.plusOne">Plus One: {{rsvp.plusOne}}</div>
-        <div *ngIf="rsvp.attending && rsvp.thursdayNight">Thursday Night</div>
-        <div *ngIf="rsvp.attending && rsvp.fridayNight">Friday Night</div>
-        <div *ngIf="rsvp.attending && rsvp.saturdayNight">Saturday Night</div>
-        <div *ngIf="rsvp.attending && rsvp.accommodation">{{rsvp.accommodation}}</div>
-        <div *ngIf="rsvp.attending && rsvp.thursdayDinner">Thursday Dinner</div>
-        <div *ngIf="rsvp.attending && rsvp.fridayBreakfast">Friday Breakfast</div>
-        <div *ngIf="rsvp.attending && rsvp.fridayLunch">Friday Lunch</div>
-        <div *ngIf="rsvp.attending && rsvp.rehearsalDinner">Rehearsal Dinner</div>
-        <div *ngIf="rsvp.attending && rsvp.mealHelp">Helping With A Meal</div>
-        <div *ngIf="rsvp.attending && rsvp.bridesBrunch">Brides Brunch</div>
-        <div *ngIf="rsvp.attending && rsvp.boysBrews">Boys Brews</div>
-        <div *ngIf="rsvp.attending && rsvp.plusOne && rsvp.plusOneBridesBrunch">+1 Brides Brunch</div>
-        <div *ngIf="rsvp.attending && rsvp.plusOne && rsvp.plusOneBoysBrews">+1 Boys Brews</div>
-        <div *ngIf="rsvp.attending && rsvp.angelsLanding">Hiking Angels Landing</div>
-        <div *ngIf="rsvp.attending && rsvp.notes">{{rsvp.notes}}</div>
-      </div>
-    </div>
-  </div>
-</div>

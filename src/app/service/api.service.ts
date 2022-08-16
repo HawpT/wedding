@@ -94,6 +94,8 @@ export class ApiService {
     )
   }
   hasCurrentUserRSVPed(): Observable<String> {
+    if (!this.isLoggedIn)
+      return EMPTY;
     let url = `${this.baseUri}/rsvp/user/`
     return this.http.get(url, { headers: this.headers }).pipe(
       map((res: any) => {
@@ -290,17 +292,10 @@ export class ApiService {
   // Error handling 
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';
-
-    if (error.error) {
+    if (!!error.error) {
       // Get client-side error
-      if (error.error.message) {
+      if (!!error.error.message) {
         errorMessage = error.error.message;
-        // Get server-side error
-        if (error.error.message.indexOf('Your session has expired') >= 0 || error.error.message.indexOf('jwt expired') >= 0) {
-          this.logout();
-          this.toastr.info("You've been signed out due to inactivity.");
-          return;
-        }
       } else if (Array.isArray(error.error)){
         error.error.forEach(err => {
           errorMessage += `${err.message}\r\n`;
@@ -311,6 +306,15 @@ export class ApiService {
     }
     else {
       errorMessage = `Error Code: ${error.status} - Message: ${error.message}`;
+    }
+    if (errorMessage.indexOf('Your session has expired') >= 0 || errorMessage.indexOf('jwt expired') >= 0) {
+      this.logout();
+      this.toastr.info("You've been signed out due to inactivity.");
+      return;
+    }
+    if (errorMessage.indexOf('jwt malformed') >= 0) {
+      this.toastr.info("You must log in again.");
+      return;
     }
     if (!environment.production) 
       console.log(error);

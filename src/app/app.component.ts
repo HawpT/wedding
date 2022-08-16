@@ -42,7 +42,7 @@ export class AppComponent implements OnDestroy {
       this.user = this.apiService.currentUser;
       this.checkAuth();
     }
-    else {
+    else if (this.apiService.isLoggedIn) {
       this.apiService.getCurrentUser().subscribe((res) => {
         this.user = res;
         this.checkAuth();

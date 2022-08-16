@@ -24,7 +24,6 @@ async function checkUserData(userId, id) : Promise<Boolean> {
   catch(err) {
     return false;
   }
-  return false;
 }
 
 export default async function authroize(req, res, next) {
@@ -39,22 +38,25 @@ export default async function authroize(req, res, next) {
     const userRoles = info['roles'];
     const userId = info['userId'];
     const params = req.originalUrl.slice(1).split('/');
-    const subject = params[1];
-    const action = params[2];
+    const subject = params[1].toLowerCase();
+    const action = params[2].toLowerCase();
     const id = params.length > 3 ? params[3] : null;
     const noAuthActions = ['login', 'register'];
     
     if (noAuthActions.includes(subject)) return next();
 
-    if (userId)
+    if (userId && action !== 'update')
       req.body.userId = userId;
 
     if (subject === 'user' && action === 'current') {
       req.currentUserId = userId;
       return next();
     }
-
-    if (subject === 'data' && userId === id){
+    if (subject === 'data' && userId === id) {
+      req.currentUserId = userId;
+      return next();
+    }
+    if (subject === 'rsvp' && action === 'user'){
       req.currentUserId = userId;
       return next();
     }
@@ -72,7 +74,7 @@ export default async function authroize(req, res, next) {
               return ((action === 'create' && actions.create) ||
                 (action === 'update' && (actions.edit && targetingSelf || actions.editall)) ||
                 (action === 'delete' && (actions.delete && targetingSelf || actions.deleteall)) ||
-                (action === 'read' && actions.view && targetingSelf) ||
+                (action === 'read' && (actions.view && targetingSelf || actions.viewall)) ||
                 (action === 'list' && actions.viewall));
             }
           });
@@ -80,6 +82,7 @@ export default async function authroize(req, res, next) {
             return next();
           throw errorMessage(userId, subject, action);
         } catch (error) {
+          console.log(error);
           return next(error);
         }
       }

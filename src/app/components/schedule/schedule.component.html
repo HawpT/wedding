@@ -22,8 +22,9 @@
     <th>Friday</th><th></th><th></th>
   </thead>
   <tbody>
-    <tr [class]="{'mandatory': rsvp?.fridayBreakfast || rsvp?.fridayLunch, 'na': !(rsvp?.fridayBreakfast || rsvp?.fridayLunch)}"><td>8:00 AM</td><td class="spacer"></td><td>Breakfast & Pack Lunches</td></tr>
-    <tr class="optional"><td>9:00 AM</td><td class="spacer"></td><td>Hike Angels Landing</td></tr>
+    <tr [class]="{'mandatory': rsvp?.angelsLanding }"><td>6:30 AM</td><td class="spacer"></td><td>Leave for Angel's Landing hike</td></tr>
+    <tr [class]="{'mandatory': rsvp?.fridayBreakfast, 'na': !rsvp?.fridayBreakfast}"><td>8:00 AM</td><td class="spacer"></td><td>Breakfast</td></tr>
+    <tr [class]="{'mandatory': rsvp?.fridayLunch, 'na': !rsvp?.fridayLunch}"><td>12:00 PM</td><td class="spacer"></td><td>Lunch</td></tr>
     <tr [class]="{'mandatory': rsvp?.rehearsalDinner, 'na': !rsvp?.rehearsalDinner}"><td>6:00 PM</td><td class="spacer"></td><td>Rehersal Dinner</td></tr>
     <tr class="optional"><td>8:00 PM</td><td class="spacer"></td><td>Games</td></tr>
     <tr><td>&nbsp;</td></tr>
@@ -33,10 +34,17 @@
   </thead>
   <tbody>
     <tr [class]="{'mandatory': rsvp?.boysBrews || rsvp?.bridesBrunch, 'na': !(rsvp?.boysBrews || rsvp?.bridesBrunch)}"><td>11:00 AM</td><td class="spacer"></td><td>Bride's Brunch & Boys Brews*</td></tr>
-    <tr class="mandatory"><td>7:00 PM</td><td class="spacer"></td><td>Wedding Ceremony</td></tr>
-    <tr class="mandatory"><td>7:30 PM</td><td class="spacer"></td><td>Reception Dinner</td></tr>
-    <tr class="optional"><td>9:30 PM</td><td class="spacer"></td><td>Trivia</td></tr>
-    <tr class="optional"><td>10:30 PM</td><td class="spacer"></td><td>Old People Go to Bed</td></tr>
+    <tr class="optional"><td>2:30 PM  </td><td class="spacer"></td><td>Bride Prep</td></tr>
+    <tr class="optional"><td>5:30 PM  </td><td class="spacer"></td><td>Grooms prep </td></tr>
+    <tr class="mandatory"><td>6:30 PM </td><td class="spacer"></td><td>Ceremony</td></tr>
+    <tr class="mandatory"><td>7:05 PM </td><td class="spacer"></td><td>Photos with the newly weds, move to reception area, drinks and mingling</td></tr>
+    <tr class="mandatory"><td>8:00 PM </td><td class="spacer"></td><td>Reception</td></tr>
+    <tr class="mandatory"><td>8:05 PM </td><td class="spacer"></td><td>First Dance</td></tr>
+    <tr class="mandatory"><td>8:10 PM </td><td class="spacer"></td><td>Dinner</td></tr>
+    <tr class="mandatory"><td>9:00 PM </td><td class="spacer"></td><td>Cake Cutting</td></tr>
+    <tr class="mandatory"><td>9:25 PM </td><td class="spacer"></td><td>Trivia</td></tr>
+    <tr class="optional"><td>10:00 PM </td><td class="spacer"></td><td>City quiet hours in effect, the after party moves indoors</td></tr>
     <tr><td>&nbsp;</td></tr>
   </tbody>
 </table>
+<div><p>*Brunch at the House with McKenna or <a href="https://eotwbrewery.com/" target="_blank">Edge of the World Brewing</a> for beer and pizza.</p></div>

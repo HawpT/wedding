@@ -126,8 +126,12 @@ auth.route('/register').post(
 // Sign-in
 auth.route('/login').post(async (req, res, next) => {
   try {
-    let user = await User.findOne({
-      email: req.body.email
+    let user = await User.findOne({ email: req.body.email }, {}, {
+      collation: { 
+        locale: 'en_US', 
+        strength: 1, 
+        caseFirst: 'off'
+      }
     });
     if (!user) {
       return res.status(401).json({

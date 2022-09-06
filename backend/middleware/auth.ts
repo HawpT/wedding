@@ -82,7 +82,6 @@ export default async function authroize(req, res, next) {
             return next();
           throw errorMessage(userId, subject, action);
         } catch (error) {
-          console.log(error);
           return next(error);
         }
       }

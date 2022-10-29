@@ -1,6 +1,7 @@
 
 <table *ngIf="rsvps">
   <thead>
+    <th></th>
     <th>Name</th>
     <th>Attending</th>
     <th>+1</th>
@@ -22,9 +23,11 @@
   </thead>
   <tbody>
     <tr>
+      <td></td>
       <td *ngFor="let total of totals">{{total}}</td>
     </tr>
     <tr *ngFor="let rsvp of rsvps">
+      <td><a routerLink="/rsvp/edit/{{rsvp._id}}">Edit</a></td>
       <td>{{getUser(rsvp)}}</td>
       <td>{{boolToYesNo(rsvp.attending)}}</td>
       <td>{{rsvp.plusOne}}</td>

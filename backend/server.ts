@@ -14,6 +14,7 @@ import dataRoute from './routes/data.route';
 import { processAndSendEmailsJob, testVerificationEmail } from './services/email.service';
 import dotenv from 'dotenv';
 import registrationCodeRoute from './routes/registration-code';
+import staticFilesRoute from './routes/gallery.route';
 
 dotenv.config({ path: '.env' });
 
@@ -55,9 +56,10 @@ app.use('/api/test', testRoute);
 app.use('/api/data', dataRoute);
 app.use('/api/registration-code', registrationCodeRoute);
 
-const staticDir = join(__dirname, process.env.STATIC_DIR);
-
+export const staticDir = join(__dirname, process.env.STATIC_DIR);
 app.use(express.static(staticDir));
+
+app.use('/api/gallery-images', staticFilesRoute);
 
 app.get('*', (req, res, next) => {
   res.sendFile(join(staticDir, 'index.html'), {

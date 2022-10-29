@@ -65,6 +65,9 @@ export class ApiService {
   }
 
   // Get all
+  getGalleryImages(category: String) {
+    return this.http.get(`${this.baseUri}/gallery-images/${category}`);
+  }
   getRegistrationCodes() {
     return this.http.get(`${this.baseUri}/registration-code/list`);
   }

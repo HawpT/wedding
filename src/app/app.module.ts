@@ -27,7 +27,6 @@ import { RoleCreateComponent } from '@components/role-create/role-create.compone
 import { RoleEditComponent } from '@components/role-edit/role-edit.component';
 import { RoleListComponent } from '@components/role-list/role-list.component';
 import { UserEditComponent } from '@components/user-edit/user-edit.component';
-import { FocusInvalidInputDirective } from '@directives/focus-invalid-input.directive';
 import { FileUploadComponent } from '@components/file-upload/file-upload.component';
 import { ProgressComponent } from '@components/progress/progress.component';
 import { TestFormComponent } from '@components/test/test-form/test-form.component';
@@ -41,9 +40,11 @@ import { RsvpCreateComponent } from '@components/rsvp/rsvp-create/rsvp-create.co
 import { RegistrationCodeListComponent } from '@components/registration-code/registration-code-list/registration-code-list.component';
 import { RegistrationCodeCreateComponent } from '@components/registration-code/registration-code-create/registration-code-create.component';
 import { InfoComponent } from '@components/info/info.component';
-import { ScheduleComponent } from './components/schedule/schedule.component';
-import { RsvpReportComponent } from './components/rsvp/rsvp-report/rsvp-report.component';
+import { ScheduleComponent } from '@components/schedule/schedule.component';
+import { RsvpReportComponent } from '@components/rsvp/rsvp-report/rsvp-report.component';
 
+import { FocusInvalidInputDirective } from '@directives/focus-invalid-input.directive';
+import { SwipeDirective } from '@directives/swipe.directive';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { RsvpReportComponent } from './components/rsvp/rsvp-report/rsvp-report.c
     RegistrationCodeCreateComponent,
     InfoComponent,
     ScheduleComponent,
-    RsvpReportComponent
+    RsvpReportComponent,
+    SwipeDirective
   ],
   imports: [
     BrowserModule,
